@@ -8,19 +8,15 @@ var options = {
 
 var quotes = [];
 
-http.get(options, function(resp){
-  resp.on('data', function(data){
-    data = JSON.parse(data);
-
-
-
-
-    fs.writeFile('data.json', quotes, function (err) {
-      console.log('Data inserted in data.json');
+function getData() {
+  for(var i = 0; i < 100; i++) {
+    http.get(options, function(resp){
+      resp.on('data', function(data){
+        data = JSON.parse(data);
+        quotes.push(data.quoteText)
+      });
+    }).on("error", function(e){
+      console.log("Got error: " + e.message);
     });
-
-
-  });
-}).on("error", function(e){
-  console.log("Got error: " + e.message);
-});
+  }
+}
