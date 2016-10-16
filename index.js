@@ -10,7 +10,7 @@ var quotes = [];
 
 http.get(options, function(resp){
   resp.on('data', function(data){
-    data
+    data = JSON.parse(data);
 
 
 
