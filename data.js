@@ -38,6 +38,13 @@ function pushData(cb) {
   });
 }
 
+module.exports.addData(data) {
+  quotes.push(data);
+  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
+    console.log('Data inserted in data.json');
+  });
+}
+
 process.on('SIGINT', function() {
     pushData(function() {
       process.exit();
