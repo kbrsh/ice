@@ -75,7 +75,7 @@ app.get("/", function(req, res) {
 });
 
 app.listen(3000);
-console.log(hexu.blue("Listening..."))
+console.log(hexu.blue("Ice is awake..."))
 
 // greeting()
 makePost()
