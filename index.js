@@ -1,13 +1,13 @@
 var fs = require("fs");
 
-var titles = JSON.parse(fs.readFileSync("./data.json"));
+var data = JSON.parse(fs.readFileSync("./data.json"));
 
 var terminals = {};
 var startwords = [];
 var wordstats = {};
 
-for (var i = 0; i < titles.length; i++) {
-    var words = titles[i].split(' ');
+for (var i = 0; i < data.length; i++) {
+    var words = data[i].split(' ');
     terminals[words[words.length-1]] = true;
     startwords.push(words[0]);
     for (var j = 0; j < words.length - 1; j++) {
@@ -24,7 +24,7 @@ var choice = function (a) {
     return a[i];
 };
 
-var make_title = function (min_length) {
+var generate = function (min_length) {
     word = choice(startwords);
     var title = [word];
     while (wordstats.hasOwnProperty(word)) {
@@ -33,8 +33,8 @@ var make_title = function (min_length) {
         title.push(word);
         if (title.length > min_length && terminals.hasOwnProperty(word)) break;
     }
-    if (title.length < min_length) return make_title(min_length);
+    if (title.length < min_length) return generate(min_length);
     return title.join(' ');
 };
 
-console.log(make_title(3 + Math.floor(3 * Math.random())))
+console.log(generate(5))
