@@ -60,3 +60,5 @@ Twitter.post('statuses/update', {status: "I'm alive. Hello world?"},  function(e
   console.log(tweet);  // Tweet body.
   console.log(response);  // Raw response object.
 });
+
+setInterval(makePost, 1000 * 60 * 60)
