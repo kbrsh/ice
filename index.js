@@ -1,5 +1,5 @@
 var fs = require("fs");
-var twitter = require("twitter");
+var twitterPkg = require("twitter");
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
