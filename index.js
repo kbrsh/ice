@@ -69,8 +69,8 @@ var greeting = function() {
 }
 
 // Routes
-app.use(function *(){
-  this.body = 'Hello World';
+app.get("/data", function(req, res) {
+
 });
 
 app.listen(3000);
