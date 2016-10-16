@@ -84,4 +84,4 @@ console.log(hexu.blue("======= Ice is Awake ======="))
 
 // greeting()
 makePost()
-setInterval(makePost, 1000 * 60 * 30)
+setInterval(makePost, 1000 * 60 * 60)
