@@ -4,3 +4,5 @@
 ### Get Started
 
 1. Run `npm install`
+2. Change data in `config.json` with your Twitter Application data
+3. Run `node index.js`
