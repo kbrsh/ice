@@ -69,7 +69,7 @@ var greeting = function() {
 }
 
 // Routes
-app.get("/data", function(req, res) {
+app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
   res.sendFile(__dirname + "/data.json");
 });
