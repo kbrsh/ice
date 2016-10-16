@@ -71,8 +71,12 @@ var greeting = function() {
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
   res.sendFile(__dirname + "/data.json");
-  console.log(hexu.green("GET '/'"))
+  console.log(hexu.green("GET '/'"));
 });
+
+app.get("/new", function(req, res)) {
+
+}
 
 app.listen(3000);
 console.log(hexu.blue("======= Ice is Awake ======="))
