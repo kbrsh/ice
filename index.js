@@ -50,6 +50,7 @@ var makePost = function() {
       console.log(error);
     }
     console.log(tweet);  // Tweet body.
+    addData(post);
   });
 }
 
