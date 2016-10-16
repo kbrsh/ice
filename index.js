@@ -10,9 +10,15 @@ var quotes = [];
 
 function getData() {
   setInterval(function () {
-    http.get(options, function(resp){
-      resp.on('data', function(data){
-        data = JSON.parse(data);
+    http.get(options, function(response){
+      var body = '';
+
+      response.on('data', function(chunk) {
+        body += chunk;
+      });
+
+      response.on('end', function(data){
+        data = JSON.parse(body);
         console.log(data.quoteText)
         quotes.push(data.quoteText)
       });
@@ -25,6 +31,9 @@ function getData() {
 getData()
 
 function pushData(cb) {
+  quotes = quotes.filter(function(item, pos) {
+    return quotes.indexOf(item) == pos;
+  });
   fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
     console.log('Data inserted in data.json');
     cb();
