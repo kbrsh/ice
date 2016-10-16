@@ -75,7 +75,7 @@ app.get("/", function(req, res) {
 });
 
 app.listen(3000);
-console.log(hexu.blue("Ice is awake..."))
+console.log(hexu.blue("======= Ice is Awake ======="))
 
 // greeting()
 makePost()
