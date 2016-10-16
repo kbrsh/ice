@@ -1,4 +1,5 @@
 var http = require('http');
+var fs = require('fs');
 
 var options = {
   host: 'api.forismatic.com',
