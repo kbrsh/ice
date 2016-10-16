@@ -24,11 +24,6 @@ module.exports.addData = function(data) {
   fs.writeFile('data.json', JSON.stringify(quotes), function (err) {});
 }
 
-quotes = quotes.slice(100, quotes.length)
-fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
-});
-
-console.log(quotes.length)
 
 process.on('SIGINT', function() {
     pushData(function() {
