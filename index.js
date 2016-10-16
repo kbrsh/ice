@@ -71,6 +71,7 @@ var greeting = function() {
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
   res.sendFile(__dirname + "/data.json");
+  console.log(hexu.green("GET '/'"))
 });
 
 app.listen(3000);
