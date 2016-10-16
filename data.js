@@ -23,7 +23,7 @@ function getData() {
         quotes.push(data.text)
       });
     }).on("error", function(e){
-      console.log("Got error: " + e.message);
+      console.log(hexu.red("Got error: " + e.message));
     });
   }, 1500);
 }
