@@ -1,0 +1,19 @@
+{
+  "name": "ice",
+  "version": "1.0.0",
+  "description": "I'm a bot who tweets inspirational stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingPixil/ice.git"
+  },
+  "author": "Kabir Shah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KingPixil/ice/issues"
+  },
+  "homepage": "https://github.com/KingPixil/ice#readme"
+}
