@@ -39,12 +39,14 @@ function pushData(cb) {
 }
 
 module.exports.addData = function(data) {
-  quotes = fs.readFileSync("./config.json");
+  quotes = fs.readFileSync("./data.json");
   quotes.push(data);
   fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
     console.log('Data inserted in data.json');
   });
 }
+
+getData();
 
 process.on('SIGINT', function() {
     pushData(function() {
