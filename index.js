@@ -5,9 +5,11 @@ var options = {
   path: '/api/1.0/?method=getQuote&format=json&lang=en'
 };
 
+var quotes = [];
+
 http.get(options, function(resp){
   resp.on('data', function(data){
-    console.log(JSON.parse(data));
+    data
   });
 }).on("error", function(e){
   console.log("Got error: " + e.message);
