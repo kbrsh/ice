@@ -18,6 +18,7 @@
   "homepage": "https://github.com/KingPixil/ice#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "hexu": "^1.0.0",
     "now": "^0.25.1",
     "twitter": "^1.4.0"
   }
