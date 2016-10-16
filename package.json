@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/KingPixil/ice/issues"
   },
-  "homepage": "https://github.com/KingPixil/ice#readme"
+  "homepage": "https://github.com/KingPixil/ice#readme",
+  "dependencies": {
+    "twitter": "^1.4.0"
+  }
 }
