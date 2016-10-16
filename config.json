@@ -1,6 +1,6 @@
 {
-  "consumer_key": "67vyLPIPWScNr5ox7NCM34exs",
-  "consumer_secret": "Wf1GHjbSUL71FMAfDZYpmTYEO6V7gYhktUpmDwWgfn9wdCCvU7",
-  "access_token_key": "787746876304961536-UTTcJ4fqL8A5vitANB7dKkXoFnoCtoR",
-  "access_token_secret": "tWZLwKwKf9M9qZPbS7sfQu2i2aEj255jGLllksoj9bbfE"
+  "consumer_key": "twitter consumer key here",
+  "consumer_secret": "twitter consumer secret here",
+  "access_token_key": "twitter access token key here",
+  "access_token_secret": "twitter access secret key here"
 }
