@@ -1,5 +1,6 @@
 var fs = require("fs");
 var twitterPkg = require("twitter");
+var addData = require("./data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
@@ -49,7 +50,6 @@ var makePost = function() {
       console.log(error);
     }
     console.log(tweet);  // Tweet body.
-    console.log(response);  // Raw response object.
   });
 }
 
