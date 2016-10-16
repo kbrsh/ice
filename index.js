@@ -5,6 +5,8 @@ var config = JSON.parse(fs.readFileSync("./config.json"));
 
 var data = JSON.parse(fs.readFileSync("./data.json"));
 
+var Twitter = new twitterPkg(config);
+
 var terminals = {};
 var startwords = [];
 var wordstats = {};

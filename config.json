@@ -1,6 +1,6 @@
 {
-  "TWITTER_CONSUMER_KEY": "twitter consumer key here",
-  "TWITTER_CONSUMER_SECRET": "twitter consumer secret here",
-  "TWITTER_ACCESS_TOKEN": "twitter access token key here",
-  "TWITTER_ACCESS_SECRET": "twitter access secret key here"
+  "consumer_key": "twitter consumer key here",
+  "consumer_secret": "twitter consumer secret here",
+  "access_token_key": "twitter access token key here",
+  "access_token_secret": "twitter access secret key here"
 }
