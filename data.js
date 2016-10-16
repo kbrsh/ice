@@ -9,26 +9,6 @@ var options = {
 var quotes = JSON.parse(fs.readFileSync("./data.json")) || [];
 module.exports.quotes = quotes;
 
-function getData() {
-  setInterval(function () {
-    http.get(options, function(response){
-      var body = '';
-
-      response.on('data', function(chunk) {
-        body += chunk;
-      });
-
-      response.on('end', function(data){
-        data = JSON.parse(body);
-        console.log(data.text)
-        quotes.push(data.text)
-      });
-    }).on("error", function(e){
-      console.log(hexu.red("Got error: " + e.message));
-    });
-  }, 1500);
-}
-
 function pushData(cb) {
   quotes = quotes.filter(function(item, pos) {
     return quotes.indexOf(item) == pos;
@@ -41,12 +21,8 @@ function pushData(cb) {
 
 module.exports.addData = function(data) {
   quotes.push(data);
-  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
-    // console.log('Data inserted in data.json');
-  });
+  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {});
 }
-
-getData();
 
 
 process.on('SIGINT', function() {
