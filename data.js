@@ -7,6 +7,7 @@ var options = {
 };
 
 var quotes = JSON.parse(fs.readFileSync("./data.json")) || [];
+module.exports.quotes = quotes;
 
 function getData() {
   setInterval(function () {
