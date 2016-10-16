@@ -63,4 +63,6 @@ var greeting = function() {
   });
 }
 
+// greeting()
+makePost()
 setInterval(makePost, 1000 * 60 * 60)
