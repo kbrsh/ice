@@ -75,7 +75,8 @@ app.get("/", function(req, res) {
 });
 
 app.get("/new", function(req, res)) {
-
+  makePost();
+  console.log(hexu.green("GET '/new', making new post..."));
 }
 
 app.listen(3000);
