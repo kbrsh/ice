@@ -49,7 +49,7 @@ var makePost = function() {
     if(error){
       console.log(error);
     }
-    console.log(tweet);  // Tweet body.
+    console.log("TWEET: " + post);
     addData(post);
   });
 }

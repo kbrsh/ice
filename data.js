@@ -38,7 +38,8 @@ function pushData(cb) {
   });
 }
 
-module.exports.addData(data) {
+module.exports.addData = function(data) {
+  quotes = fs.readFileSync("./config.json");
   quotes.push(data);
   fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
     console.log('Data inserted in data.json');
