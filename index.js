@@ -70,7 +70,7 @@ var greeting = function() {
 // Routes
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
-  res.sendFile(__dirname + "/data.json");
+  res.end(JSON.stringify(require("./data.js").quotes));
   console.log(hexu.green("GET '/'"));
 });
 
