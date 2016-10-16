@@ -11,6 +11,15 @@ var quotes = [];
 http.get(options, function(resp){
   resp.on('data', function(data){
     data
+
+
+
+
+    fs.writeFile('data.json', quotes, function (err) {
+      console.log('Data inserted in data.json');
+    });
+
+
   });
 }).on("error", function(e){
   console.log("Got error: " + e.message);
