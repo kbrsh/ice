@@ -1,5 +1,8 @@
 var fs = require("fs");
 var twitterPkg = require("twitter");
+var koa = require('koa');
+var app = koa();
+
 var addData = require("./data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
@@ -7,6 +10,7 @@ var config = JSON.parse(fs.readFileSync("./config.json"));
 var data = JSON.parse(fs.readFileSync("./data.json"));
 
 var Twitter = new twitterPkg(config);
+
 
 var terminals = {};
 var startwords = [];
@@ -63,6 +67,13 @@ var greeting = function() {
     console.log(response);  // Raw response object.
   });
 }
+
+// Routes
+app.use(function *(){
+  this.body = 'Hello World';
+});
+
+app.listen();
 
 // greeting()
 makePost()
