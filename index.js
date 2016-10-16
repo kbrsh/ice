@@ -1,7 +1,7 @@
 var fs = require("fs");
 var twitterPkg = require("twitter");
-var koa = require('koa');
-var app = koa();
+var express = require('express');
+var app = express();
 
 var addData = require("./data.js").addData;
 
@@ -73,7 +73,7 @@ app.use(function *(){
   this.body = 'Hello World';
 });
 
-app.listen();
+app.listen(3000);
 
 // greeting()
 makePost()

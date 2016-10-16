@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/KingPixil/ice#readme",
   "dependencies": {
-    "koa": "^1.2.4",
+    "express": "^4.14.0",
     "now": "^0.25.1",
     "twitter": "^1.4.0"
   }
