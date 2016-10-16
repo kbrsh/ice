@@ -45,11 +45,7 @@ module.exports.addData = function(data) {
   });
 }
 
-getData();
-
-fs.writeFile('new.json', JSON.stringify(quotes), function (err) {
-  console.log('Data inserted in data.json');
-});
+// getData();
 
 
 process.on('SIGINT', function() {
