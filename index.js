@@ -1,6 +1,8 @@
 var fs = require("fs");
 var twitter = require("twitter");
 
+var config = JSON.parse(fs.readFileSync("./config.json"));
+
 var data = JSON.parse(fs.readFileSync("./data.json"));
 console.log(data.length)
 
