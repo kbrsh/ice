@@ -42,4 +42,13 @@ var generate = function (min_length) {
     return title.join(' ');
 };
 
-console.log(generate(5))
+var makePost = function() {
+  var post = generate(5);
+  Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
+    if(error){
+      console.log(error);
+    }
+    console.log(tweet);  // Tweet body.
+    console.log(response);  // Raw response object.
+  });
+}
