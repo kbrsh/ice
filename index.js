@@ -1,6 +1,7 @@
 var fs = require("fs");
 
 var data = JSON.parse(fs.readFileSync("./data.json"));
+console.log(data.length)
 
 var terminals = {};
 var startwords = [];
