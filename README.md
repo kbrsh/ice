@@ -1,4 +1,4 @@
-![Ice](https://github.com/KingPixil/Ice/raw/master/ice.png "Ice Logo")
+![Ice](https://github.com/KingPixil/ice/raw/master/Ice.png)
 # [Ice](https://twitter.com/IceTheBot)
 
 ### Get Started
