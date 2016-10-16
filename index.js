@@ -53,12 +53,14 @@ var makePost = function() {
   });
 }
 
-Twitter.post('statuses/update', {status: "I'm alive. Hello world?"},  function(error, tweet, response){
-  if(error){
-    console.log(error);
-  }
-  console.log(tweet);  // Tweet body.
-  console.log(response);  // Raw response object.
-});
+var greeting = function() {
+  Twitter.post('statuses/update', {status: "I'm alive. Hello world?"},  function(error, tweet, response){
+    if(error){
+      console.log(error);
+    }
+    console.log(tweet);  // Tweet body.
+    console.log(response);  // Raw response object.
+  });
+}
 
 setInterval(makePost, 1000 * 60 * 60)
