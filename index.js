@@ -1,6 +1,7 @@
 var fs = require("fs");
 var twitterPkg = require("twitter");
 var express = require('express');
+var hexu = require("hexu");
 var app = express();
 
 var addData = require("./data.js").addData;
@@ -53,7 +54,7 @@ var makePost = function() {
     if(error){
       console.log(error);
     }
-    console.log("TWEET: " + post);
+    console.log(hexu.green("Tweeted: " + post));
     addData(post);
   });
 }
