@@ -64,8 +64,6 @@ var greeting = function() {
     if(error){
       console.log(error);
     }
-    console.log(tweet);  // Tweet body.
-    console.log(response);  // Raw response object.
   });
 }
 
