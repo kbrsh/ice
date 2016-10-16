@@ -45,7 +45,7 @@ module.exports.addData = function(data) {
   });
 }
 
-// getData();
+getData();
 
 
 process.on('SIGINT', function() {
