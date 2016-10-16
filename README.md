@@ -2,3 +2,5 @@
 # [Ice](https://twitter.com/IceTheBot)
 
 ### Get Started
+
+1. Run `npm install`
