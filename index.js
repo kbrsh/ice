@@ -52,7 +52,7 @@ var makePost = function() {
   var post = generate(5);
   Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
     if(error){
-      console.log(error);
+      console.log(hexu.red(error));
     }
     console.log(hexu.green("Tweeted: " + post));
     addData(post);
