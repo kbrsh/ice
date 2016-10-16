@@ -33,7 +33,7 @@ function pushData(cb) {
     return quotes.indexOf(item) == pos;
   });
   fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
-    console.log('Data inserted in data.json');
+    // console.log('Data inserted in data.json');
     cb();
   });
 }
