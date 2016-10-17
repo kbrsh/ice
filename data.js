@@ -28,8 +28,9 @@ module.exports.addData = function(data) {
 function mineData() {
   request('http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en', function (error, response, body) {
       if (!error && response.statusCode == 200 && !body.match(new RegExp("\'", "g"))) {
-        console.log(JSON.parse(body.quoteText));
-        quotes.push(body.quoteText);
+        var obj = JSON.parse(body);
+        console.log(obj.quoteText);
+        quotes.push(obj.quoteText);
       }
   });
 }
