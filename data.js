@@ -26,21 +26,11 @@ module.exports.addData = function(data) {
 
 
 function mineData() {
-var options = {
-  host: 'api.forismatic.com',
-  path: '/api/1.0/?method=getQuote&key=457653&format=json&lang=en'
-};
-
-var req = http.get(options, function(res) {
-  var body = [];
-  res.on('data', function(chunk) {
-    body.push(chunk);
-  }).on('end', function() {
-    var data = JSON.parse(body);
-    console.log(data.quoteText);
-    quotes.push(data.quoteText)
-  })
-});
+  request('http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en', function (error, response, body) {
+      if (!error && response.statusCode == 200 && !body.match(new RegExp("\'", "g"))) {
+        console.log(JSON.parse(body));
+      }
+  });
 }
 
 setInterval(mineData, 1500);
