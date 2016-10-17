@@ -45,8 +45,11 @@ var generate = function (min_length) {
         title.push(word);
         if (title.length > min_length && terminals.hasOwnProperty(word)) break;
     }
-    if (title.length < min_length) return generate(min_length);
-    return title.join(' ');
+    if (title.length < min_length || title.join(" ").length > 140 || title[title.length - 1].slice(-1) !== ("." || "!" || "?")) {
+      return generate(min_length);
+    } else {
+      return title.join(' ');
+    }
 };
 
 var makePost = function() {
