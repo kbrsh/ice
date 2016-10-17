@@ -2,13 +2,14 @@ var fs = require("fs");
 var twitterPkg = require("twitter");
 var express = require('express');
 var hexu = require("hexu");
+var request = require("request");
 var app = express();
 
 var addData = require("./data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
-var data = JSON.parse(fs.readFileSync("./data.json"));
+var data = JSON.parse(request('https://github.com/KingPixil/ice/raw/master/data.json').pipe(fs.createWriteStream('data.json')));
 
 var Twitter = new twitterPkg(config);
 
