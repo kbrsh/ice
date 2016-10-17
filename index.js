@@ -9,7 +9,7 @@ var addData = require("./data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
-var data = JSON.parse(request('https://github.com/KingPixil/ice/raw/master/data.json').pipe(fs.createWriteStream('data.json')));
+var data = JSON.parse(fs.readFileSync("./data.json"));
 
 var Twitter = new twitterPkg(config);
 
@@ -80,7 +80,7 @@ app.get("/new", function(req, res) {
   console.log(hexu.green("GET '/new', making new post..."));
 })
 
-app.listen(process.env.OPENSHIFT_PORT || 3000);
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000, process.env.OPENSHIFT_NODEJS_IP || "localhost");
 console.log(hexu.blue("======= Ice is Awake ======="))
 
 // greeting()
