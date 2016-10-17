@@ -80,7 +80,7 @@ app.get("/new", function(req, res) {
   console.log(hexu.green("GET '/new', making new post..."));
 })
 
-app.listen(3000);
+app.listen(process.env.OPENSHIFT_PORT || 3000);
 console.log(hexu.blue("======= Ice is Awake ======="))
 
 // greeting()
