@@ -27,6 +27,7 @@ module.exports.addData = function(data) {
 
 
 function mineData() {
+  console.log(hexu.green("Ice is mining data:"))
   request('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en', function (error, response, body) {
       if (!error && response.statusCode == 200 && !body.match(new RegExp("\'", "g")) && !body.match(new RegExp("\"\"", "g"))) {
         var obj = JSON.parse(body);
