@@ -1,7 +1,6 @@
 var request = require('request');
 var fs = require('fs');
 var hexu = require('hexu');
-var verd = require('verd');
 
 var options = {
   host: 'quote.machinu.net',
