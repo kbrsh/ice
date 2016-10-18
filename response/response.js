@@ -1,4 +1,4 @@
-module.exports.get = function(data) {
+module.exports.get = function(length, data) {
   var terminals = {};
   var startwords = [];
   var wordstats = {};
@@ -36,4 +36,6 @@ module.exports.get = function(data) {
         return title.join(' ');
       }
   };
+
+  return generate(length);
 }
