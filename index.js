@@ -3,6 +3,7 @@ var twitterPkg = require("twitter");
 var express = require('express');
 var hexu = require("hexu");
 var request = require("request");
+var response = require("./response/response.js");
 var app = express();
 
 var addData = require("./data/data.js").addData;
@@ -17,7 +18,7 @@ var Twitter = new twitterPkg(config);
 
 
 var makePost = function() {
-  var post = generate(5);
+  var post = response.get(2);
   Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
     if(error){
       console.log(hexu.red(error));
