@@ -19,9 +19,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "hexu": "^1.0.0",
-    "now": "^0.25.1",
     "request": "^2.75.0",
-    "twitter": "^1.4.0",
-    "verd": "^1.0.0"
+    "twitter": "^1.4.0"
   }
 }
