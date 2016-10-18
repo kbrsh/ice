@@ -39,7 +39,7 @@ var greeting = function() {
 // Routes
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
-  res.end(JSON.stringify(require("./data.js").quotes));
+  res.end(JSON.stringify(require("./data/data.js").quotes));
   // console.log(hexu.green("GET '/'"));
 });
 
