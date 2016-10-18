@@ -10,6 +10,7 @@ var options = {
 var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
 module.exports.quotes = quotes;
 
+console.log(hexu.blue("*** Ice is mining data ***"));
 function pushData(cb) {
   quotes = quotes.filter(function(item, pos) {
     return quotes.indexOf(item) == pos;
@@ -26,7 +27,6 @@ module.exports.addData = function(data) {
 
 
 function mineData() {
-  console.log(hexu.blue("*** Ice is mining data ***"))
   request('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en', function (error, response, body) {
       if (!error && response.statusCode == 200 && !body.match(new RegExp("\'", "g")) && !body.match(new RegExp("\"\"", "g"))) {
         var obj = JSON.parse(body);
