@@ -6,7 +6,7 @@ var options = {
   path: '/api'
 };
 
-var quotes = JSON.parse(fs.readFileSync("./data.json")) || [];
+var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
 module.exports.quotes = quotes;
 
 function pushData(cb) {
