@@ -40,7 +40,7 @@ var greeting = function() {
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
   res.end(JSON.stringify(require("./data.js").quotes));
-  console.log(hexu.green("GET '/'"));
+  // console.log(hexu.green("GET '/'"));
 });
 
 app.get("/new", function(req, res) {
