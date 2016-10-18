@@ -5,11 +5,11 @@ var hexu = require("hexu");
 var request = require("request");
 var app = express();
 
-var addData = require("./data.js").addData;
+var addData = require("./data/data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
-var data = JSON.parse(fs.readFileSync("./data.json"));
+var data = JSON.parse(fs.readFileSync("./data/data.json"));
 
 var Twitter = new twitterPkg(config);
 
