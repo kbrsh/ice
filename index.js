@@ -27,7 +27,7 @@ var makePost = function() {
     if(error){
       console.log(hexu.red(error));
     }
-    console.log(hexu.green("Tweeted: " + post));
+    console.log(hexu.green("🐦  Tweeted: " + post));
     addData(post);
   });
 }
