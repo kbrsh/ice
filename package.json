@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "hexu": "^1.0.0",
+    "kov": "^0.1.0",
     "request": "^2.75.0",
     "twitter": "^1.4.0"
   }
