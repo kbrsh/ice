@@ -25,7 +25,7 @@ var makePost = function() {
   var post = kov(data, opts);
   Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
     if(error){
-      console.log(hexu.red(error));
+      console.log(hexu.red(JSON.stringify(error)));
     }
     console.log(hexu.green("🐦  Tweeted: " + post));
     addData(post);
