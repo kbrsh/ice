@@ -15,14 +15,14 @@ function pushData(cb) {
   quotes = quotes.filter(function(item, pos) {
     return quotes.indexOf(item) == pos;
   });
-  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {
+  fs.writeFile(__dirname + '/data.json', JSON.stringify(quotes), function (err) {
     cb();
   });
 }
 
 module.exports.addData = function(data) {
   quotes.push(data);
-  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {});
+  fs.writeFile(__dirname + '/data.json', JSON.stringify(quotes), function (err) {});
 }
 
 
