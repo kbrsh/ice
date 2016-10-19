@@ -18,7 +18,7 @@ var Twitter = new twitterPkg(config);
 
 
 var makePost = function() {
-  var post = response.get(2, data);
+  var post = response.get(data, 2);
   Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
     if(error){
       console.log(hexu.red(error));
