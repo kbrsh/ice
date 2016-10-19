@@ -7,7 +7,7 @@ var options = {
   path: '/api'
 };
 
-var quotes = JSON.parse(fs.readFileSync(__dirname + "/data/data.json")) || [];
+var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
 module.exports.quotes = quotes;
 
 // console.log(hexu.blue("*** Ice is mining data ***"));
@@ -22,7 +22,7 @@ function pushData(cb) {
 
 module.exports.addData = function(data) {
   quotes.push(data);
-  fs.writeFile('/data/data.json', JSON.stringify(quotes), function (err) {});
+  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {});
 }
 
 
