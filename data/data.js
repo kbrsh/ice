@@ -7,7 +7,7 @@ var options = {
   path: '/api'
 };
 
-var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
+var quotes = JSON.parse(fs.readFileSync(__dirname + "/data/data.json")) || [];
 module.exports.quotes = quotes;
 
 // console.log(hexu.blue("*** Ice is mining data ***"));
@@ -22,7 +22,7 @@ function pushData(cb) {
 
 module.exports.addData = function(data) {
   quotes.push(data);
-  fs.writeFile('data.json', JSON.stringify(quotes), function (err) {});
+  fs.writeFile('/data/data.json', JSON.stringify(quotes), function (err) {});
 }
 
 
@@ -43,7 +43,7 @@ function mineData() {
   });
 }
 
-//setInterval(mineData, 1500);
+setInterval(mineData, 1500);
 
 
 process.on('SIGINT', function() {
