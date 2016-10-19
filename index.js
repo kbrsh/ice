@@ -3,7 +3,7 @@ var twitterPkg = require("twitter");
 var express = require('express');
 var hexu = require("hexu");
 var request = require("request");
-var response = require("./response/response.js");
+var kov = require("kov");
 var app = express();
 
 var addData = require("./data/data.js").addData;
