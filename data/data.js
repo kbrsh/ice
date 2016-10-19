@@ -10,7 +10,7 @@ var options = {
 var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
 module.exports.quotes = quotes;
 
-console.log(hexu.blue("*** Ice is mining data ***"));
+// console.log(hexu.blue("*** Ice is mining data ***"));
 function pushData(cb) {
   quotes = quotes.filter(function(item, pos) {
     return quotes.indexOf(item) == pos;
