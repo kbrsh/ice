@@ -30,14 +30,14 @@ function mineData() {
   request('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en', function (error, response, body) {
       if (!error && response.statusCode == 200 && !body.match(new RegExp("\'", "g")) && !body.match(new RegExp("\"\"", "g"))) {
         var obj = JSON.parse(body);
-        console.log(hexu.green("=> \u2713 Mined Data:") + obj.quoteText);
+        console.log(hexu.green("\t=> \u2713 Mined Data:") + obj.quoteText);
         quotes.push(obj.quoteText);
       }
   });
   request('http://quote.machinu.net/api', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var obj = JSON.parse(body);
-        console.log(hexu.green("=> \u2713 Mined Data: ") + obj.text);
+        console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text);
         quotes.push(obj.text);
       }
   });
