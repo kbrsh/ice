@@ -23,13 +23,17 @@ var opts = {
 
 var makePost = function() {
   var post = kov(data, opts);
-  Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
-    if(error){
-      console.log(hexu.red(JSON.stringify(error)));
-    }
-    console.log(hexu.green("📢  Tweeted: " + post));
-    //addData(post);
-  });
+  if(post.split(" ").length > 7) {
+    makePost();
+  } else {
+    Twitter.post('statuses/update', {status: post},  function(error, tweet, response){
+      if(error){
+        console.log(hexu.red(JSON.stringify(error)));
+      }
+      console.log(hexu.green("📢  Tweeted: " + post));
+      // addData(post);
+    });
+  }
 }
 
 var greeting = function() {
