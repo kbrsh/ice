@@ -30,7 +30,6 @@ var makePost = function() {
         console.log(hexu.red(JSON.stringify(error)));
       }
       console.log(hexu.green("📢  Tweeted: " + post));
-      // addData(post);
     });
   }
 }
