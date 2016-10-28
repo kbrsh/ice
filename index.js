@@ -34,14 +34,6 @@ var makePost = function() {
   }
 }
 
-var greeting = function() {
-  Twitter.post('statuses/update', {status: "I'm alive. Hello world?"},  function(error, tweet, response){
-    if(error){
-      console.log(error);
-    }
-  });
-}
-
 // Routes
 app.get("/", function(req, res) {
   res.header('Content-Type', 'application/json');
