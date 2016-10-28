@@ -6,7 +6,6 @@ var request = require("request");
 var kov = require("kov");
 var app = express();
 
-var addData = require("./data/data.js").addData;
 
 var config = JSON.parse(fs.readFileSync("./config.json"));
 
