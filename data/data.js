@@ -36,7 +36,7 @@ function mineData() {
   });
 }
 
-// setInterval(mineData, 1500);
+setInterval(mineData, 1500);
 
 
 
