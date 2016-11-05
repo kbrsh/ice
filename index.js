@@ -3,7 +3,7 @@ var twitterPkg = require("twitter");
 var express = require('express');
 var hexu = require("hexu");
 var request = require("request");
-var kov = require("kov");
+var Spark = require("sparkai");
 var app = express();
 
 
@@ -12,6 +12,8 @@ var config = JSON.parse(fs.readFileSync("./config.json"));
 var data = JSON.parse(fs.readFileSync("./data/data.json"));
 
 var Twitter = new twitterPkg(config);
+
+var generator = new Spark.generator
 
 var opts = {
   type: "sentence",
