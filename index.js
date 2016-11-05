@@ -21,6 +21,8 @@ var opts = {
 
 var generator = new Spark.generator(opts);
 
+generator.train(data);
+
 
 var makePost = function() {
   var post = generator(data);
