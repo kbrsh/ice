@@ -25,7 +25,7 @@ generator.train(data);
 
 
 var makePost = function() {
-  var post = generator(data);
+  var post = generator.generate();
   if(post.split(" ").length > 7) {
     makePost();
   } else {
