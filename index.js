@@ -14,7 +14,6 @@ var data = JSON.parse(fs.readFileSync("./data/data.json"));
 var Twitter = new twitterPkg(config);
 
 var opts = {
-  type: "sentence",
   min: 2,
   max: 3
 }
