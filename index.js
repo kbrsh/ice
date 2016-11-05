@@ -13,7 +13,7 @@ var data = JSON.parse(fs.readFileSync("./data/data.json"));
 
 var Twitter = new twitterPkg(config);
 
-var generator = new Spark.generator
+var generator = new Spark.generator();
 
 var opts = {
   type: "sentence",
