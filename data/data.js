@@ -16,7 +16,7 @@ function pushData(cb) {
     return quotes.indexOf(item) == pos;
   });
   fs.writeFile(__dirname + '/data.json', JSON.stringify(quotes), function (err) {
-    cb();
+    // cb();
   });
 }
 
