@@ -13,17 +13,17 @@ var data = JSON.parse(fs.readFileSync("./data/data.json"));
 
 var Twitter = new twitterPkg(config);
 
-var generator = new Spark.generator();
-
 var opts = {
   type: "sentence",
   min: 2,
   max: 3
 }
 
+var generator = new Spark.generator(opts);
+
 
 var makePost = function() {
-  var post = kov(data, opts);
+  var post = generator(data);
   if(post.split(" ").length > 7) {
     makePost();
   } else {
