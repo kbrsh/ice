@@ -20,7 +20,7 @@
     "express": "^4.14.0",
     "hexu": "^1.0.0",
     "request": "^2.75.0",
-    "sparkai": "0.0.0",
+    "sparkai": "0.0.1",
     "twitter": "^1.4.0"
   }
 }
