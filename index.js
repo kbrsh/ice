@@ -49,7 +49,7 @@ app.get("/new", function(req, res) {
 })
 
 app.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000, process.env.OPENSHIFT_NODEJS_IP || "localhost");
-console.log(hexu.blue("======= ✨ Ice is Awake ✨ ======="))
+console.log(hexu.blue("======= ✨ Ice is Awake ✨ ======="));
 
 makePost();
 setInterval(makePost, 1000 * 60 * 20);
