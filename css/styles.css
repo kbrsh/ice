@@ -11,6 +11,10 @@ p {
   font-size: 2rem;
 }
 
+#hero {
+  margin-top: 150px;
+}
+
 .small {
   max-width: 500px;
 }
