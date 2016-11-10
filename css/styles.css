@@ -18,6 +18,7 @@ p {
 #visit {
   margin-left: 0rem;
   border: 3px solid #50FFDF;
+  background: none;
   color: #50FFDF;
 }
 
