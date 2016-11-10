@@ -1,4 +1,5 @@
 var request = require('request');
+var forismatic = require('forismatic-node')();
 var fs = require('fs');
 var hexu = require('hexu');
 
