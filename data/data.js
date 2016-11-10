@@ -3,10 +3,6 @@ var forismatic = require('forismatic-node')();
 var fs = require('fs');
 var hexu = require('hexu');
 
-var options = {
-  host: 'quote.machinu.net',
-  path: '/api'
-};
 
 var quotes = JSON.parse(fs.readFileSync(__dirname + "/data.json")) || [];
 module.exports.quotes = quotes;
@@ -44,8 +40,6 @@ function mineData() {
 }
 
 setInterval(mineData, 2000);
-
-
 
 
 process.on('SIGINT', function() {
