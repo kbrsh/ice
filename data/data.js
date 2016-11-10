@@ -36,13 +36,14 @@ function mineData() {
       }
   });
 
-  forismatic.getQuote(function (error, quote) {
+  forismatic.getQuote(function (err, quote) {
     if(err) throw err;
-    
+      console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text);
+      quotes.push(quote.quoteText);
   });
 }
 
-// setInterval(mineData, 1500);
+setInterval(mineData, 2000);
 
 
 
