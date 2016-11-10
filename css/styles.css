@@ -12,7 +12,12 @@ p {
 }
 
 #hero {
-  margin-top: 150px;
+  margin-top: 125px;
+}
+
+#logo {
+  height: 100px;
+  width: 100px;
 }
 
 .small {
