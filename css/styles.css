@@ -17,7 +17,9 @@ p {
 
 #visit {
   margin-left: 0rem;
-  border: 3px solid #50FFDF;
+  margin-top: 3rem;
+  display: inline-block;
+  border: 2px solid #50FFDF;
   background: none;
   color: #50FFDF;
   font-family: "Anonymous Pro", monospace;
