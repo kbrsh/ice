@@ -35,6 +35,11 @@ function mineData() {
         quotes.push(obj.text);
       }
   });
+
+  forismatic.getQuote(function (error, quote) {
+    if(err) throw err;
+    
+  });
 }
 
 // setInterval(mineData, 1500);
