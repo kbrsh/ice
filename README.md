@@ -1,6 +1,9 @@
 ![Ice](https://github.com/KingPixil/ice/raw/master/img/Ice.png)
 # [Ice](https://twitter.com/IceTheBot)
 
+The website.
+
+
 ### What is it?
 
 Ice is an AI bot that learns from data, including:
