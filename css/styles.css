@@ -20,6 +20,7 @@ p {
   border: 3px solid #50FFDF;
   background: none;
   color: #50FFDF;
+  transition: 0.5s all ease;
 }
 
 #visit:hover {
