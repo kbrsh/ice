@@ -33,9 +33,13 @@ function mineData() {
   });
 
   forismatic.getQuote(function (err, quote) {
-    if(err) throw err;
+    if(err) {
+      throw err;
+    }
+    if(quote.quoteText.length <= 140) {
       console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + quote.quoteText);
       quotes.push(quote.quoteText);
+    }
   });
 }
 
