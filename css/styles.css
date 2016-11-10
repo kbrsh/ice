@@ -45,7 +45,8 @@ p {
 /* === Footer === */
 footer {
 	position: absolute;
-	margin-top: 5rem;
+	margin-top: 200px;
+  margin-bottom: 5rem;
 }
 
 #footer-content {
