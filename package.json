@@ -22,5 +22,8 @@
     "request": "^2.75.0",
     "sparkai": "0.0.1",
     "twitter": "^1.4.0"
+  },
+  "devDependencies": {
+    "forismatic-node": "^1.1.4"
   }
 }
