@@ -20,6 +20,7 @@ p {
   border: 3px solid #50FFDF;
   background: none;
   color: #50FFDF;
+  font-family: "Anonymous Pro", monospace;
   transition: 0.3s all ease;
 }
 
