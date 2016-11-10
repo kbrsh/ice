@@ -34,7 +34,7 @@ function mineData() {
 
   forismatic.getQuote(function (err, quote) {
     if(err) throw err;
-      console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text);
+      console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + quote.quoteText);
       quotes.push(quote.quoteText);
   });
 }
