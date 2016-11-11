@@ -52,4 +52,4 @@ app.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000, process.env.OPENSHIFT_NODE
 console.log(hexu.blue("======= ✨ Ice is Awake ✨ ======="));
 
 makePost();
-setInterval(makePost, 1000 * 60 * 20);
+setInterval(makePost, 1000 * 60 * 30);
