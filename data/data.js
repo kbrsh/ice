@@ -34,18 +34,18 @@ function mineData() {
       }
   });
 
-  // forismatic.getQuote(function (err, quote) {
-  //   if(err) {
-  //     throw err;
-  //   }
-  //   if(quote.quoteText.split(" ").length <= 10) {
-  //     console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + quote.quoteText);
-  //     quotes.push(quote.quoteText);
-  //   }
-  // });
+  forismatic.getQuote(function (err, quote) {
+    if(err) {
+      throw err;
+    }
+    if(quote.quoteText.split(" ").length <= 10) {
+      console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + quote.quoteText);
+      quotes.push(quote.quoteText);
+    }
+  });
 }
 
-setInterval(mineData, 2000);
+// setInterval(mineData, 2000);
 
 
 process.on('SIGINT', function() {
