@@ -1,5 +1,5 @@
 ![Ice](https://github.com/KingPixil/ice/raw/master/img/Ice.png)
-# [Ice](https://twitter.com/IceTheBot)
+# [Ice](http://meetice.ml)
 
 The website.
 
