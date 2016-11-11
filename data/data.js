@@ -45,7 +45,7 @@ function mineData() {
   });
 }
 
-// setInterval(mineData, 2000);
+setInterval(mineData, 2000);
 
 
 process.on('SIGINT', function() {
