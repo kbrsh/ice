@@ -13,6 +13,10 @@ p {
   font-size: 2rem;
 }
 
+a {
+  transition: all 0.2s ease;
+}
+
 #hero {
   margin-top: 125px;
 }
