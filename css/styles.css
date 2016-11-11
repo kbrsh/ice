@@ -16,6 +16,7 @@ p {
 a {
   color: #A6A6A6;
   text-decoration: none;
+  border-bottom: 2px solid #50FFDF;
   transition: all 0.2s ease;
 }
 
