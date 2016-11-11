@@ -15,6 +15,7 @@ p {
 
 a {
   transition: all 0.2s ease;
+  color: #A6A6A6;
 }
 
 #hero {
