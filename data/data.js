@@ -27,9 +27,9 @@ function mineData() {
   request('http://quote.machinu.net/api', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var obj = JSON.parse(body);
-        if(obj.text.split(" ").length <= 10 && obj.text.split(" ").length >= 3) {
-          console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text.replace(/"/g, ""));
-          quotes.push(obj.text.replace(/"/g, ""));
+        if(obj.text.split(" ").length <= 7 && obj.text.split(" ").length >= 3) {
+          console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text);
+          quotes.push(obj.text);
         }
       }
   });
@@ -38,14 +38,14 @@ function mineData() {
     if(err) {
       throw err;
     }
-    if(quote.quoteText.split(" ").length <= 10) {
+    if(quote.quoteText.split(" ").length <= 7) {
       console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + quote.quoteText);
       quotes.push(quote.quoteText);
     }
   });
 }
 
-// setInterval(mineData, 2000);
+// setInterval(mineData, 1500);
 
 
 process.on('SIGINT', function() {
