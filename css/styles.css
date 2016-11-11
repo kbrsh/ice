@@ -15,6 +15,7 @@ p {
 
 a {
   color: #A6A6A6;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
