@@ -27,7 +27,7 @@ function mineData() {
   request('http://quote.machinu.net/api', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var obj = JSON.parse(body);
-        if(obj.text.split(" ").length <= 10 && obj.text.split(" ").length >= 3) {
+        if(obj.text.split(" ").length <= 10 && obj.text.split(" ").length >= 3 && !/fuck|shit|damn|sex|virgin|masturbate|hoe|bitch|dick|frig/gi.test(obj.text)) {
           console.log(hexu.green("\t Success \u2713 => ") + "Mined Data: " + obj.text);
           quotes.push(obj.text);
         }
@@ -45,7 +45,7 @@ function mineData() {
   });
 }
 
-// setInterval(mineData, 2000);
+setInterval(mineData, 2000);
 
 
 process.on('SIGINT', function() {
