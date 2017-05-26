@@ -358,7 +358,7 @@ class TextRNN(object):
 data = open('data/data.txt').read().lower()
 bot = TextRNN()
 bot.train(data, 1, '')
-# bot.load(open("data/MODEL"));
+bot.load(open("data/MODEL"));
 bot.run(size=50, temperatures=[0.5, 1.0], iterations=5000)
 bot.save(True)
 # print bot.sample(300000, temperature=0.5, start='\n')
