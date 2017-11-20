@@ -12,7 +12,7 @@ minSeedSize = 2
 maxSeedSize = 7
 rows = 1000
 cols = 1000
-maxExpressionLength = 10
+maxOperationLength = 10
 twitterAPI = TwitterAPI.TwitterAPI(
     consumer_key=os.environ["CONSUMER_KEY"],
     consumer_secret=os.environ["CONSUMER_SECRET"],
@@ -116,7 +116,7 @@ def randomPixel():
 def randomConstant():
     return (maximumSlope7 * float(random())) - 1.0
 
-# Expressions
+# Operations
 class VariableX(object):
     def compute(self, x, y):
         return (x, x, x)
@@ -267,26 +267,26 @@ class Cos(object):
         (ar, ag, ab) = self.a.compute(x, y)
         return (math.cos(ar), math.cos(ag), math.cos(ab))
 
-expressionsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-expressions = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
+operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
 
-expressionsEndLength = len(expressionsEnd)
-expressionsLength = len(expressions)
+operationsEndLength = len(operationsEnd)
+operationsLength = len(operations)
 
-def expression(current):
+def operation(current):
     if current == 0:
-        return expressionsEnd[random() % expressionsEndLength]()
+        return operationsEnd[random() % operationsEndLength]()
     else:
         nextLevel = current - 1
-        currentExpression = expressions[random() % expressionsLength]
+        currentOperation = operations[random() % operationsLength]
 
         params = []
-        paramsLength = currentExpression.__init__.__code__.co_argcount
+        paramsLength = currentOperation.__init__.__code__.co_argcount
 
         for param in range(paramsLength - 1):
-            params.append(expression(nextLevel))
+            params.append(operation(nextLevel))
 
-        return currentExpression(*params)
+        return currentOperation(*params)
 
 # Pixel
 pixel = None
@@ -321,7 +321,7 @@ def generate():
 
     seedText = generateSeed()
     seed = [ord(char) for char in seedText]
-    pixel = expression((random() % maxExpressionLength) + 1)
+    pixel = operation((random() % maxOperationLength) + 1)
     generateImage()
 
     f = open("art.png", "rb")
