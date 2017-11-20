@@ -2,6 +2,7 @@ aeon
 aero
 amphitrite
 apex
+aphelion
 apricity
 arc
 asteroid
@@ -10,9 +11,11 @@ astro
 atom
 aura
 blaze
+caldera
 cito
 claw
 comet
+cosmos
 elixir
 eloquence
 eon
@@ -26,11 +29,13 @@ fluid
 galaxy
 halcyon
 holo
+interstellar
 lacuna
 light
 lunar
 mellow
 moon
+nebula
 neptune
 nova
 nox
