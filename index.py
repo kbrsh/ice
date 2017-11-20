@@ -57,6 +57,8 @@ for gram, amount in model.items():
     del probs["total"]
 
 # Seed Generator
+vowels = ['a', 'e', 'i', 'o', 'u']
+
 def pickChar(info):
     grams = []
     probs = []
@@ -81,7 +83,12 @@ def generateSeed():
             seed += gram
             seedLength += 1
 
-    if seed in words or seedLength <= minSeedSize:
+    invalid = False
+    for i, char in enumerate(seed[:-2]):
+        if char not in vowels and seed[i + 1] not in vowels and seed[i + 2] not in vowels:
+            invalid = True
+
+    if invalid or seed in words or seedLength <= minSeedSize:
         return generateSeed()
     else:
         return seed.title()
