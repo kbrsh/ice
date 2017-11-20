@@ -1,6 +1,7 @@
 import os
 import math
 import time
+import colorsys
 import png
 import TwitterAPI
 import numpy as np
@@ -12,7 +13,7 @@ minSeedSize = 2
 maxSeedSize = 7
 rows = 1000
 cols = 1000
-maxOperationLength = 10
+maxOperationLength = 7
 twitterAPI = TwitterAPI.TwitterAPI(
     consumer_key=os.environ["CONSUMER_KEY"],
     consumer_secret=os.environ["CONSUMER_SECRET"],
@@ -116,6 +117,22 @@ def randomPixel():
 def randomConstant():
     return (maximumSlope7 * float(random())) - 1.0
 
+# Colors
+def rgb(c):
+    (c1, c2, c3) = c
+    return ((c1 * 127.5) + 127.5, (c2 * 127.5) + 127.5, (c3 * 127.5) + 127.5)
+
+def hsl(c):
+    (c1, c2, c3) = c
+    c1 = (c1 * 0.5) + 0.5
+    c2 = (c2 * 0.5) + 0.5
+    c3 = (c3 * 0.5) + 0.5
+    (r, g, b) = colorsys.hls_to_rgb(c1, c3, c2)
+    return (r * 255.0, g * 255.0, b * 255.0)
+
+colors = [rgb, hsl]
+colorsLength = len(colors)
+
 # Operations
 class VariableX(object):
     def compute(self, x, y):
@@ -204,8 +221,8 @@ class Linear(object):
     def compute(self, x, y):
         slope = self.slope
         yint = self.yint
-        (ar, ag, ab) = self.a.compute(x, y)
-        return (((slope * ar) + yint) % 1.0, ((slope * ag) + yint) % 1.0, ((slope * ab) + yint) % 1.0)
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (((slope * ac1) + yint) % 1.0, ((slope * ac2) + yint) % 1.0, ((slope * ac3) + yint) % 1.0)
 
 class Exponent(object):
     def __init__(self, a):
@@ -214,8 +231,8 @@ class Exponent(object):
 
     def compute(self, x, y):
         exponent = self.exponent
-        (ar, ag, ab) = self.a.compute(x, y)
-        return (abs(ar) ** exponent, abs(ag) ** exponent, abs(ab) ** exponent)
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (abs(ac1) ** exponent, abs(ac2) ** exponent, abs(ac3) ** exponent)
 
 class Add(object):
     def __init__(self, a, b):
@@ -223,9 +240,9 @@ class Add(object):
         self.b = b
 
     def compute(self, x, y):
-        (ar, ag, ab) = self.a.compute(x, y)
-        (br, bg, bb) = self.b.compute(x, y)
-        return ((ar + br) / 2.0, (ag + bg) / 2.0, (ab + bb) / 2.0)
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        (bc1, bc2, bc3) = self.b.compute(x, y)
+        return ((ac1 + bc1) / 2.0, (ac2 + bc2) / 2.0, (ac3 + bc3) / 2.0)
 
 class Subtract(object):
     def __init__(self, a, b):
@@ -233,9 +250,9 @@ class Subtract(object):
         self.b = b
 
     def compute(self, x, y):
-        (ar, ag, ab) = self.a.compute(x, y)
-        (br, bg, bb) = self.b.compute(x, y)
-        return ((ar - br) / 2.0, (ag - bg) / 2.0, (ab - bb) / 2.0)
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        (bc1, bc2, bc3) = self.b.compute(x, y)
+        return ((ac1 - bc1) / 2.0, (ac2 - bc2) / 2.0, (ac3 - bc3) / 2.0)
 
 class Multiply(object):
     def __init__(self, a, b):
@@ -243,9 +260,29 @@ class Multiply(object):
         self.b = b
 
     def compute(self, x, y):
-        (ar, ag, ab) = self.a.compute(x, y)
-        (br, bg, bb) = self.b.compute(x, y)
-        return (ar * br, ag * bg, ab * bb)
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        (bc1, bc2, bc3) = self.b.compute(x, y)
+        return (ac1 * bc1, ac2 * bc2, ac3 * bc3)
+
+class Mod(object):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def compute(self, x, y):
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        (bc1, bc2, bc3) = self.b.compute(x, y)
+
+        if bc1 == 0:
+            bc1 = 0.00000001
+
+        if bc2 == 0:
+            bc2 = 0.00000001
+
+        if bc3 == 0:
+            bc3 = 0.00000001
+
+        return (ac1 % bc1, ac2 % bc2, ac3 % bc3)
 
 class Sin(object):
     def __init__(self, a):
@@ -256,19 +293,19 @@ class Sin(object):
     def compute(self, x, y):
         frequency = self.frequency
         phase = self.phase
-        (ar, ag, ab) = self.a.compute(x, y)
-        return (math.sin((frequency * ar) + phase), math.sin((frequency * ag) + phase), math.sin((frequency * ab) + phase))
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (math.sin((frequency * ac1) + phase), math.sin((frequency * ac2) + phase), math.sin((frequency * ac3) + phase))
 
 class Cos(object):
     def __init__(self, a):
         self.a = a
 
     def compute(self, x, y):
-        (ar, ag, ab) = self.a.compute(x, y)
-        return (math.cos(ar), math.cos(ag), math.cos(ab))
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (math.cos(ac1), math.cos(ac2), math.cos(ac3))
 
 operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Mod, Sin, Cos]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
@@ -296,16 +333,21 @@ def generateImage():
     data = []
     rowsSlope = 1.0 / (float(rows) / 2.0)
     colsSlope = 1.0 / (float(cols) / 2.0)
+    pixelOperation = pixel[0]
+    pixelColor = pixel[1]
+
+    def pixelProcess(x, y):
+        return pixelColor(pixelOperation.compute(x, y))
 
     for row in range(rows):
         currentRow = []
         x = (rowsSlope * float(row)) - 1.0
 
         for col in range(cols):
-            (r, g, b) = pixel.compute(x, (colsSlope * float(col)) - 1.0)
-            currentRow.append((r * 127.5) + 127.5)
-            currentRow.append((g * 127.5) + 127.5)
-            currentRow.append((b * 127.5) + 127.5)
+            (c1, c2, c3) = pixelProcess(x, (colsSlope * float(col)) - 1.0)
+            currentRow.append(c1)
+            currentRow.append(c2)
+            currentRow.append(c3)
 
         data.append(currentRow)
 
@@ -321,7 +363,7 @@ def generate():
 
     seedText = generateSeed()
     seed = [ord(char) for char in seedText]
-    pixel = operation((random() % maxOperationLength) + 1)
+    pixel = [operation((random() % maxOperationLength) + 1), colors[random() % colorsLength]]
     generateImage()
 
     f = open("art.png", "rb")
