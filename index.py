@@ -125,6 +125,70 @@ class VariableY(object):
     def compute(self, x, y):
         return (y, y, y)
 
+class LinearX(object):
+    def __init__(self):
+        self.slopes = [randomConstant(), randomConstant(), randomConstant()]
+        self.yints = [randomConstant(), randomConstant(), randomConstant()]
+    def compute(self, x, y):
+        slopes = self.slopes
+        yints = self.yints
+        return (((slopes[0] * x) + yints[0]) % 1.0, ((slopes[1] * x) + yints[1]) % 1.0, ((slopes[2] * x) + yints[2]) % 1.0)
+
+class LinearY(object):
+    def __init__(self):
+        self.slopes = [randomConstant(), randomConstant(), randomConstant()]
+        self.yints = [randomConstant(), randomConstant(), randomConstant()]
+    def compute(self, x, y):
+        slopes = self.slopes
+        yints = self.yints
+        return (((slopes[0] * y) + yints[0]) % 1.0, ((slopes[1] * y) + yints[1]) % 1.0, ((slopes[2] * y) + yints[2]) % 1.0)
+
+class ExponentX(object):
+    def __init__(self):
+        self.exponents = [abs(randomConstant()), abs(randomConstant()), abs(randomConstant())]
+
+    def compute(self, x, y):
+        exponents = self.exponents
+        absX = abs(x)
+        return (absX ** exponents[0], absX ** exponents[1], absX ** exponents[2])
+
+class ExponentY(object):
+    def __init__(self):
+        self.exponents = [abs(randomConstant()), abs(randomConstant()), abs(randomConstant())]
+
+    def compute(self, x, y):
+        exponents = self.exponents
+        absY = abs(y)
+        return (absY ** exponents[0], absY ** exponents[1], absY ** exponents[2])
+
+class SinX(object):
+    def __init__(self):
+        self.frequencies = [randomConstant() * math.pi, randomConstant() * math.pi, randomConstant() * math.pi]
+        self.phases = [randomConstant(), randomConstant(), randomConstant()]
+
+    def compute(self, x, y):
+        frequencies = self.frequencies
+        phases = self.phases
+        return (math.sin((frequencies[0] * x) + phases[0]), math.sin((frequencies[1] * x) + phases[1]), math.sin((frequencies[2] * x) + phases[2]))
+
+class SinY(object):
+    def __init__(self):
+        self.frequencies = [randomConstant() * math.pi, randomConstant() * math.pi, randomConstant() * math.pi]
+        self.phases = [randomConstant(), randomConstant(), randomConstant()]
+
+    def compute(self, x, y):
+        frequencies = self.frequencies
+        phases = self.phases
+        return (math.sin((frequencies[0] * y) + phases[0]), math.sin((frequencies[1] * y) + phases[1]), math.sin((frequencies[2] * y) + phases[2]))
+
+class CosX(object):
+    def compute(self, x, y):
+        return (math.cos(x), math.cos(x), math.cos(x))
+
+class CosY(object):
+    def compute(self, x, y):
+        return (math.cos(y), math.cos(y), math.cos(y))
+
 class Constant(object):
     def __init__(self):
         self.constant = (randomPixel(), randomPixel(), randomPixel())
@@ -146,19 +210,11 @@ class Linear(object):
 class Exponent(object):
     def __init__(self, a):
         self.a = a
-        self.exponent = randomConstant()
+        self.exponent = abs(randomConstant())
 
     def compute(self, x, y):
         exponent = self.exponent
         (ar, ag, ab) = self.a.compute(x, y)
-
-        if ar == 0:
-            ar = 1
-        if ag == 0:
-            ag = 1
-        if ab == 0:
-            ab = 1
-
         return (abs(ar) ** exponent, abs(ag) ** exponent, abs(ab) ** exponent)
 
 class Add(object):
@@ -211,7 +267,7 @@ class Cos(object):
         (ar, ag, ab) = self.a.compute(x, y)
         return (math.cos(ar), math.cos(ag), math.cos(ab))
 
-expressionsEnd = [VariableX, VariableY, Constant]
+expressionsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
 expressions = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
 
 expressionsEndLength = len(expressionsEnd)
