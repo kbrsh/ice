@@ -332,6 +332,9 @@ def generate():
     })
     f.close()
 
+    return seedText
+
 while True:
-    generate()
-    time.sleep(3600)
+    print("\x1b[36mIce\x1b[0m Crafting Post 💡")
+    print("\x1b[36mIce\x1b[0m Success \"" + generate() + "\" ✨")
+    time.sleep(1800)
