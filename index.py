@@ -102,8 +102,8 @@ def slash(key):
 
 # Random
 seed = None
-maximumSlope = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 2.0)
-maximumSlope7 = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 14.0)
+maximumSlopePixel = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 2.0)
+maximumSlopeConstant = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 14.0)
 
 def random():
     global seed
@@ -112,10 +112,10 @@ def random():
     return value
 
 def randomPixel():
-    return (maximumSlope * float(random())) - 1.0
+    return (maximumSlopePixel * float(random())) - 1.0
 
 def randomConstant():
-    return (maximumSlope7 * float(random())) - 1.0
+    return (maximumSlopeConstant * float(random())) - 1.0
 
 # Colors
 def rgb(c):
