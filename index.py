@@ -118,9 +118,6 @@ def random():
     seed = [(value >> 56) & 0xFF, (value >> 48) & 0xFF, (value >> 40) & 0xFF, (value >> 32) & 0xFF, (value >> 24) & 0xFF, (value >> 16) & 0xFF, (value >> 8) & 0xFF, value & 0xFF]
     return value
 
-def randomPixel():
-    return (maximumSlopePixel * float(random())) - 1.0
-
 def randomConstant():
     return (maximumSlopeConstant * float(random())) - 7.0
 
@@ -218,12 +215,6 @@ class CosX(object):
 class CosY(object):
     def compute(self, x, y):
         return (math.cos(y), math.cos(y), math.cos(y))
-
-class Constant(object):
-    def __init__(self):
-        self.constant = (randomPixel(), randomPixel(), randomPixel())
-    def compute(self, x, y):
-        return self.constant
 
 class Linear(object):
     def __init__(self, a):
@@ -341,7 +332,7 @@ class Arrow(object):
         (ac1, ac2, ac3) = self.a.compute(x, y)
         return (-abs(2.0 * ac1) + 1.0, -abs(2.0 * ac2) + 1.0, -abs(2.0 * ac3) + 1.0)
 
-operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
+operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY]
 operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, TanH, Squash, Arrow]
 
 operationsEndLength = len(operationsEnd)
