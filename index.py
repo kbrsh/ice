@@ -164,10 +164,7 @@ class ExponentOperator(object):
 
     def compute(self, x, y):
         ac = self.a.compute(x, y)
-        if ac < 0:
-            return -(abs(ac) ** self.exponent)
-        else:
-            return ac ** self.exponent
+        return math.copysign(abs(ac) ** self.exponent, ac)
 
 class AdditionOperator(object):
     def __init__(self, a, b):
@@ -232,7 +229,7 @@ class ArrowOperator(object):
         return -abs(2.0 * self.a.compute(x, y)) + 1.0
 
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
-operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
+operations = [ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
