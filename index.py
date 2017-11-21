@@ -331,10 +331,18 @@ class Squash(object):
 
     def compute(self, x, y):
         (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (ac1 / (abs(ac1) + 1), ac2 / (abs(ac2) + 1), ac3 / (abs(ac3) + 1))
+        return (ac1 / (abs(ac1) + 1.0), ac2 / (abs(ac2) + 1.0), ac3 / (abs(ac3) + 1.0))
+
+class Arrow(object):
+    def __init__(self, a):
+        self.a = a
+
+    def compute(self, x, y):
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (-abs(2.0 * ac1) + 1.0, -abs(2.0 * ac2) + 1.0, -abs(2.0 * ac3) + 1.0)
 
 operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, TanH, Squash]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, TanH, Squash, Arrow]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
@@ -395,13 +403,13 @@ def generate():
     pixel = [operation((random() % maxOperationLength) + 1), colors[random() % colorsLength]]
     generateImage()
 
-    # f = open("art.png", "rb")
-    # twitterAPI.request("statuses/update_with_media", {
-    #     "status": seedText
-    # }, {
-    #     "media[]": f.read()
-    # })
-    # f.close()
+    f = open("art.png", "rb")
+    twitterAPI.request("statuses/update_with_media", {
+        "status": seedText
+    }, {
+        "media[]": f.read()
+    })
+    f.close()
 
     return seedText
 
