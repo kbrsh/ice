@@ -109,8 +109,8 @@ def slash(key):
 
 # Random
 seed = None
-maximumSlopePixel = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 2.0)
-maximumSlopeConstant = 1.0 / (float(0xFFFFFFFFFFFFFFFF) / 14.0)
+maximumSlopePixel = 2.0 / float(0xFFFFFFFFFFFFFFFF)
+maximumSlopeConstant = 14.0 / float(0xFFFFFFFFFFFFFFFF)
 
 def random():
     global seed
@@ -122,7 +122,7 @@ def randomPixel():
     return (maximumSlopePixel * float(random())) - 1.0
 
 def randomConstant():
-    return (maximumSlopeConstant * float(random())) - 1.0
+    return (maximumSlopeConstant * float(random())) - 7.0
 
 # Colors
 def rgb(c):
@@ -173,8 +173,11 @@ class ExponentX(object):
 
     def compute(self, x, y):
         exponents = self.exponents
-        absX = abs(x)
-        return (absX ** exponents[0], absX ** exponents[1], absX ** exponents[2])
+        if x < 0:
+            absX = abs(x)
+            return (-(absX ** exponents[0]), -(absX ** exponents[1]), -(absX ** exponents[2]))
+        else:
+            return (x ** exponents[0], x ** exponents[1], x ** exponents[2])
 
 class ExponentY(object):
     def __init__(self):
@@ -182,8 +185,11 @@ class ExponentY(object):
 
     def compute(self, x, y):
         exponents = self.exponents
-        absY = abs(y)
-        return (absY ** exponents[0], absY ** exponents[1], absY ** exponents[2])
+        if y < 0:
+            absY = abs(y)
+            return (-(absY ** exponents[0]), -(absY ** exponents[1]), -(absY ** exponents[2]))
+        else:
+            return (y ** exponents[0], y ** exponents[1], y ** exponents[2])
 
 class SinX(object):
     def __init__(self):
@@ -234,7 +240,7 @@ class Linear(object):
 class Exponent(object):
     def __init__(self, a):
         self.a = a
-        self.exponent = randomConstant()
+        self.exponent = abs(randomConstant())
 
     def compute(self, x, y):
         exponent = self.exponent
