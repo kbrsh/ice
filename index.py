@@ -193,7 +193,6 @@ class MultiplicationOperator(object):
 class ReciprocalOperator(object):
     def __init__(self, a):
         self.a = a
-        print("hi")
 
     def compute(self, x, y):
         ac = self.a.compute(x, y)
