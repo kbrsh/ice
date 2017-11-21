@@ -317,9 +317,16 @@ class Cos(object):
         (ac1, ac2, ac3) = self.a.compute(x, y)
         return (math.cos(ac1), math.cos(ac2), math.cos(ac3))
 
+class TanH(object):
+    def __init__(self, a):
+        self.a = a
+
+    def compute(self, x, y):
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (math.tanh(ac1), math.tanh(ac2), math.tanh(ac3))
+
 class Squash(object):
     def __init__(self, a):
-        print("hi")
         self.a = a
 
     def compute(self, x, y):
@@ -327,7 +334,7 @@ class Squash(object):
         return (ac1 / (abs(ac1) + 1), ac2 / (abs(ac2) + 1), ac3 / (abs(ac3) + 1))
 
 operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, Squash]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, TanH, Squash]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
