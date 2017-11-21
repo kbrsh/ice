@@ -13,7 +13,7 @@ minSeedSize = 2
 maxSeedSize = 7
 rows = 1000
 cols = 1000
-maxOperationLength = 7
+maxOperationsLength = 7
 twitterAPI = TwitterAPI.TwitterAPI(
     consumer_key=os.environ["CONSUMER_KEY"],
     consumer_secret=os.environ["CONSUMER_SECRET"],
@@ -122,12 +122,10 @@ def randomConstant():
     return (maximumSlopeConstant * float(random())) - 7.0
 
 # Colors
-def rgb(c):
-    (c1, c2, c3) = c
+def rgb(c1, c2, c3):
     return ((c1 * 127.5) + 127.5, (c2 * 127.5) + 127.5, (c3 * 127.5) + 127.5)
 
-def hsl(c):
-    (c1, c2, c3) = c
+def hsl(c1, c2, c3):
     c1 = (c1 * 0.5) + 0.5
     c2 = (c2 * 0.5) + 0.5
     c3 = (c3 * 0.5) + 0.5
@@ -138,202 +136,106 @@ colors = [rgb, hsl]
 colorsLength = len(colors)
 
 # Operations
-class VariableX(object):
+class VariableXOperator(object):
     def compute(self, x, y):
-        return (x, x, x)
+        return x
 
-class VariableY(object):
+class VariableYOperator(object):
     def compute(self, x, y):
-        return (y, y, y)
+        return y
 
-class LinearX(object):
+class ConstantOperator(object):
     def __init__(self):
-        self.slopes = [randomConstant(), randomConstant(), randomConstant()]
-        self.yints = [randomConstant(), randomConstant(), randomConstant()]
-    def compute(self, x, y):
-        slopes = self.slopes
-        yints = self.yints
-        return (((slopes[0] * x) + yints[0]) % 1.0, ((slopes[1] * x) + yints[1]) % 1.0, ((slopes[2] * x) + yints[2]) % 1.0)
-
-class LinearY(object):
-    def __init__(self):
-        self.slopes = [randomConstant(), randomConstant(), randomConstant()]
-        self.yints = [randomConstant(), randomConstant(), randomConstant()]
-    def compute(self, x, y):
-        slopes = self.slopes
-        yints = self.yints
-        return (((slopes[0] * y) + yints[0]) % 1.0, ((slopes[1] * y) + yints[1]) % 1.0, ((slopes[2] * y) + yints[2]) % 1.0)
-
-class ExponentX(object):
-    def __init__(self):
-        self.exponents = [abs(randomConstant()), abs(randomConstant()), abs(randomConstant())]
+        self.constant = (maximumSlopePixel * float(random())) - 1.0
 
     def compute(self, x, y):
-        exponents = self.exponents
-        if x < 0:
-            absX = abs(x)
-            return (-(absX ** exponents[0]), -(absX ** exponents[1]), -(absX ** exponents[2]))
-        else:
-            return (x ** exponents[0], x ** exponents[1], x ** exponents[2])
+        return self.constant
 
-class ExponentY(object):
-    def __init__(self):
-        self.exponents = [abs(randomConstant()), abs(randomConstant()), abs(randomConstant())]
-
-    def compute(self, x, y):
-        exponents = self.exponents
-        if y < 0:
-            absY = abs(y)
-            return (-(absY ** exponents[0]), -(absY ** exponents[1]), -(absY ** exponents[2]))
-        else:
-            return (y ** exponents[0], y ** exponents[1], y ** exponents[2])
-
-class SinX(object):
-    def __init__(self):
-        self.frequencies = [randomConstant() * math.pi, randomConstant() * math.pi, randomConstant() * math.pi]
-        self.phases = [randomConstant(), randomConstant(), randomConstant()]
-
-    def compute(self, x, y):
-        frequencies = self.frequencies
-        phases = self.phases
-        return (math.sin((frequencies[0] * x) + phases[0]), math.sin((frequencies[1] * x) + phases[1]), math.sin((frequencies[2] * x) + phases[2]))
-
-class SinY(object):
-    def __init__(self):
-        self.frequencies = [randomConstant() * math.pi, randomConstant() * math.pi, randomConstant() * math.pi]
-        self.phases = [randomConstant(), randomConstant(), randomConstant()]
-
-    def compute(self, x, y):
-        frequencies = self.frequencies
-        phases = self.phases
-        return (math.sin((frequencies[0] * y) + phases[0]), math.sin((frequencies[1] * y) + phases[1]), math.sin((frequencies[2] * y) + phases[2]))
-
-class CosX(object):
-    def compute(self, x, y):
-        return (math.cos(x), math.cos(x), math.cos(x))
-
-class CosY(object):
-    def compute(self, x, y):
-        return (math.cos(y), math.cos(y), math.cos(y))
-
-class Linear(object):
+class LinearOperator(object):
     def __init__(self, a):
         self.a = a
         self.slope = randomConstant()
         self.yint = randomConstant()
 
     def compute(self, x, y):
-        slope = self.slope
-        yint = self.yint
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (((slope * ac1) + yint) % 1.0, ((slope * ac2) + yint) % 1.0, ((slope * ac3) + yint) % 1.0)
+        return ((self.a.compute(x, y) * self.slope) + self.yint) % 1.0
 
-class Exponent(object):
+class ExponentOperator(object):
     def __init__(self, a):
         self.a = a
         self.exponent = abs(randomConstant())
 
     def compute(self, x, y):
-        exponent = self.exponent
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-
-        c1 = 0
-        c2 = 0
-        c3 = 0
-
-        if ac1 < 0:
-            c1 = -(abs(ac1) ** exponent)
+        ac = self.a.compute(x, y)
+        if ac < 0:
+            return -(abs(ac) ** self.exponent)
         else:
-            c1 = ac1 ** exponent
+            return ac ** self.exponent
 
-        if ac2 < 0:
-            c2 = -(abs(ac2) ** exponent)
-        else:
-            c2 = ac2 ** exponent
-
-        if ac3 < 0:
-            c3 = -(abs(ac3) ** exponent)
-        else:
-            c3 = ac3 ** exponent
-
-        return (c1, c2, c3)
-
-class Add(object):
+class AdditionOperator(object):
     def __init__(self, a, b):
         self.a = a
         self.b = b
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        (bc1, bc2, bc3) = self.b.compute(x, y)
-        return ((ac1 + bc1) / 2.0, (ac2 + bc2) / 2.0, (ac3 + bc3) / 2.0)
+        return (self.a.compute(x, y) + self.b.compute(x, y)) / 2.0
 
-class Subtract(object):
+class SubtractionOperator(object):
     def __init__(self, a, b):
         self.a = a
         self.b = b
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        (bc1, bc2, bc3) = self.b.compute(x, y)
-        return ((ac1 - bc1) / 2.0, (ac2 - bc2) / 2.0, (ac3 - bc3) / 2.0)
+        return (self.a.compute(x, y) - self.b.compute(x, y)) / 2.0
 
-class Multiply(object):
+class MultiplicationOperator(object):
     def __init__(self, a, b):
         self.a = a
         self.b = b
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        (bc1, bc2, bc3) = self.b.compute(x, y)
-        return (ac1 * bc1, ac2 * bc2, ac3 * bc3)
+        return self.a.compute(x, y) * self.b.compute(x, y)
 
-class Sin(object):
+class SineOperator(object):
     def __init__(self, a):
         self.a = a
         self.frequency = randomConstant() * math.pi
         self.phase = randomConstant()
 
     def compute(self, x, y):
-        frequency = self.frequency
-        phase = self.phase
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (math.sin((frequency * ac1) + phase), math.sin((frequency * ac2) + phase), math.sin((frequency * ac3) + phase))
+        return math.sin((self.frequency * self.a.compute(x, y)) + self.phase)
 
-class Cos(object):
+class CosineOperator(object):
     def __init__(self, a):
         self.a = a
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (math.cos(ac1), math.cos(ac2), math.cos(ac3))
+        return math.cos(self.a.compute(x, y) * math.pi)
 
-class TanH(object):
+class HyperbolicTangentOperator(object):
     def __init__(self, a):
         self.a = a
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (math.tanh(ac1), math.tanh(ac2), math.tanh(ac3))
+        return math.tanh(self.a.compute(x, y))
 
-class Squash(object):
+class SquashOperator(object):
     def __init__(self, a):
         self.a = a
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (ac1 / (abs(ac1) + 1.0), ac2 / (abs(ac2) + 1.0), ac3 / (abs(ac3) + 1.0))
+        ac = self.a.compute(x, y)
+        return ac / (abs(ac) + 1.0)
 
-class Arrow(object):
+class ArrowOperator(object):
     def __init__(self, a):
         self.a = a
 
     def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (-abs(2.0 * ac1) + 1.0, -abs(2.0 * ac2) + 1.0, -abs(2.0 * ac3) + 1.0)
+        return -abs(2.0 * self.a.compute(x, y)) + 1.0
 
-operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, TanH, Squash, Arrow]
+operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
+operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
@@ -359,23 +261,28 @@ pixel = None
 # Generate Image
 def generateImage():
     data = []
-    rowsSlope = 1.0 / (float(rows) / 2.0)
-    colsSlope = 1.0 / (float(cols) / 2.0)
-    pixelOperation = pixel[0]
-    pixelColor = pixel[1]
-
-    def pixelProcess(x, y):
-        return pixelColor(pixelOperation.compute(x, y))
+    rowsSlope = 2.0 / (float(rows) - 1.0)
+    colsSlope = 2.0 / (float(cols) - 1.0)
+    pixelOperationC1 = pixel[0]
+    pixelOperationC2 = pixel[1]
+    pixelOperationC3 = pixel[2]
+    pixelColor = pixel[3]
 
     for row in range(rows):
         currentRow = []
         x = (rowsSlope * float(row)) - 1.0
 
         for col in range(cols):
-            (c1, c2, c3) = pixelProcess(x, (colsSlope * float(col)) - 1.0)
-            currentRow.append(c1)
-            currentRow.append(c2)
-            currentRow.append(c3)
+            y = (colsSlope * float(col)) - 1.0
+            c1 = pixelOperationC1.compute(x, y)
+            c2 = pixelOperationC2.compute(x, y)
+            c3 = pixelOperationC3.compute(x, y)
+
+            (r, g, b) = pixelColor(c1, c2, c3)
+
+            currentRow.append(r)
+            currentRow.append(g)
+            currentRow.append(b)
 
         data.append(currentRow)
 
@@ -391,7 +298,10 @@ def generate():
 
     seedText = generateSeed()
     seed = [ord(char) for char in seedText]
-    pixel = [operation((random() % maxOperationLength) + 1), colors[random() % colorsLength]]
+
+    currentOperationsLength = (random() % maxOperationsLength) + 1
+    pixel = [operation(currentOperationsLength), operation(currentOperationsLength), operation(currentOperationsLength), colors[random() % colorsLength]]
+
     generateImage()
 
     f = open("art.png", "rb")
