@@ -190,6 +190,18 @@ class MultiplicationOperator(object):
     def compute(self, x, y):
         return self.a.compute(x, y) * self.b.compute(x, y)
 
+class ReciprocalOperator(object):
+    def __init__(self, a):
+        self.a = a
+        print("hi")
+
+    def compute(self, x, y):
+        ac = self.a.compute(x, y)
+        if ac == 0.0:
+            return ac
+        else:
+            return (1.0 / self.a.compute(x, y)) % 1.0
+
 class SineOperator(object):
     def __init__(self, a):
         self.a = a
@@ -229,7 +241,7 @@ class ArrowOperator(object):
         return -abs(2.0 * self.a.compute(x, y)) + 1.0
 
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
-operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
+operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
