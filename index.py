@@ -229,7 +229,7 @@ class ArrowOperator(object):
         return -abs(2.0 * self.a.compute(x, y)) + 1.0
 
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
-operations = [ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
+operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
