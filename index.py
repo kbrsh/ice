@@ -234,12 +234,32 @@ class Linear(object):
 class Exponent(object):
     def __init__(self, a):
         self.a = a
-        self.exponent = abs(randomConstant())
+        self.exponent = randomConstant()
 
     def compute(self, x, y):
         exponent = self.exponent
         (ac1, ac2, ac3) = self.a.compute(x, y)
-        return (abs(ac1) ** exponent, abs(ac2) ** exponent, abs(ac3) ** exponent)
+
+        c1 = 0
+        c2 = 0
+        c3 = 0
+
+        if ac1 < 0:
+            c1 = -(abs(ac1) ** exponent)
+        else:
+            c1 = ac1 ** exponent
+
+        if ac2 < 0:
+            c2 = -(abs(ac2) ** exponent)
+        else:
+            c2 = ac2 ** exponent
+
+        if ac3 < 0:
+            c3 = -(abs(ac3) ** exponent)
+        else:
+            c3 = ac3 ** exponent
+
+        return (c1, c2, c3)
 
 class Add(object):
     def __init__(self, a, b):
@@ -271,26 +291,6 @@ class Multiply(object):
         (bc1, bc2, bc3) = self.b.compute(x, y)
         return (ac1 * bc1, ac2 * bc2, ac3 * bc3)
 
-class Mod(object):
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-
-    def compute(self, x, y):
-        (ac1, ac2, ac3) = self.a.compute(x, y)
-        (bc1, bc2, bc3) = self.b.compute(x, y)
-
-        if bc1 == 0:
-            bc1 = 0.00000001
-
-        if bc2 == 0:
-            bc2 = 0.00000001
-
-        if bc3 == 0:
-            bc3 = 0.00000001
-
-        return (ac1 % bc1, ac2 % bc2, ac3 % bc3)
-
 class Sin(object):
     def __init__(self, a):
         self.a = a
@@ -312,7 +312,7 @@ class Cos(object):
         return (math.cos(ac1), math.cos(ac2), math.cos(ac3))
 
 operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Mod, Sin, Cos]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
