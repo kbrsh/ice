@@ -28,9 +28,14 @@ felicity
 fire
 fluid
 galaxy
+glade
 halcyon
 holo
+hyper
+ice
+infinity
 interstellar
+iris
 lacuna
 light
 lunar
@@ -44,6 +49,7 @@ oblivion
 omni
 plasma
 plethora
+proximity
 pyro
 ripple
 serene
@@ -51,6 +57,7 @@ shadow
 slash
 spark
 spectral
+tesseract
 venus
 vesta
 void
