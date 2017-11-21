@@ -317,8 +317,17 @@ class Cos(object):
         (ac1, ac2, ac3) = self.a.compute(x, y)
         return (math.cos(ac1), math.cos(ac2), math.cos(ac3))
 
+class Squash(object):
+    def __init__(self, a):
+        print("hi")
+        self.a = a
+
+    def compute(self, x, y):
+        (ac1, ac2, ac3) = self.a.compute(x, y)
+        return (ac1 / (abs(ac1) + 1), ac2 / (abs(ac2) + 1), ac3 / (abs(ac3) + 1))
+
 operationsEnd = [VariableX, VariableY, LinearX, LinearY, ExponentX, ExponentY, SinX, SinY, CosX, CosY, Constant]
-operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos]
+operations = [Linear, Exponent, Add, Subtract, Multiply, Sin, Cos, Squash]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
@@ -379,13 +388,13 @@ def generate():
     pixel = [operation((random() % maxOperationLength) + 1), colors[random() % colorsLength]]
     generateImage()
 
-    f = open("art.png", "rb")
-    twitterAPI.request("statuses/update_with_media", {
-        "status": seedText
-    }, {
-        "media[]": f.read()
-    })
-    f.close()
+    # f = open("art.png", "rb")
+    # twitterAPI.request("statuses/update_with_media", {
+    #     "status": seedText
+    # }, {
+    #     "media[]": f.read()
+    # })
+    # f.close()
 
     return seedText
 
