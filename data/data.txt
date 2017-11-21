@@ -16,6 +16,7 @@ cito
 claw
 comet
 cosmos
+craft
 elixir
 eloquence
 eon
