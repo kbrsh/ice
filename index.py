@@ -300,15 +300,11 @@ def generateImage():
 
         for col in range(cols):
             y = (colsSlope * float(col)) - 1.0
-            c1 = pixelOperationC1.compute(x, y)
-            c2 = pixelOperationC2.compute(x, y)
-            c3 = pixelOperationC3.compute(x, y)
+            (c1, c2, c3) = pixelColor(pixelOperationC1.compute(x, y), pixelOperationC2.compute(x, y), pixelOperationC3.compute(x, y))
 
-            (r, g, b) = pixelColor(c1, c2, c3)
-
-            currentRow.append(r)
-            currentRow.append(g)
-            currentRow.append(b)
+            currentRow.append(c1)
+            currentRow.append(c2)
+            currentRow.append(c3)
 
         data.append(currentRow)
 
