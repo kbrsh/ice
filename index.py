@@ -339,4 +339,4 @@ def generate():
 while True:
     print("\x1b[36mIce\x1b[0m Crafting Post 💡")
     print("\x1b[36mIce\x1b[0m Success \"" + generate() + "\" ✨")
-    time.sleep(1800)
+    time.sleep(1020)
