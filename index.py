@@ -77,7 +77,7 @@ def generateSeed():
     while gram in model and seedLength <= maxSeedSize:
         gram = pickChar(model[gram])
 
-        if gram == " ":
+        if gram == ' ':
             break
         else:
             seed += gram
