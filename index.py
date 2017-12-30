@@ -11,6 +11,7 @@ np.seterr(over="ignore")
 gramLength = 2
 minSeedSize = 2
 maxSeedSize = 7
+maxSeedWords = 7
 rows = 1000
 cols = 1000
 maxOperationsLength = 7
@@ -99,24 +100,19 @@ seven = np.uint64(7)
 fiftyseven = np.uint64(57)
 
 def slash(key):
-    result = np.uint64(0)
-
-    for i in range(len(key)):
-        result = (result ^ np.uint64(key[i])) * (prime)
-        result = (result >> seven) | (result << fiftyseven)
-
+    result = np.uint64(key) * prime
+    result = (result >> seven) | (result << fiftyseven)
     return result.item()
 
 # Random
-seed = None
+seed = (slash(ord('I')) + slash(ord('c')) + slash(ord('e'))) / 3
 maximumSlopePixel = 2.0 / float(0xFFFFFFFFFFFFFFFF)
 maximumSlopeConstant = 14.0 / float(0xFFFFFFFFFFFFFFFF)
 
 def random():
     global seed
-    value = slash(seed)
-    seed = [(value >> 56) & 0xFF, (value >> 48) & 0xFF, (value >> 40) & 0xFF, (value >> 32) & 0xFF, (value >> 24) & 0xFF, (value >> 16) & 0xFF, (value >> 8) & 0xFF, value & 0xFF]
-    return value
+    seed = slash(seed)
+    return seed
 
 def randomConstant():
     return (maximumSlopeConstant * float(random())) - 7.0
@@ -318,8 +314,17 @@ def generate():
     global seed
     global pixel
 
+    seedWords = random() % maxSeedWords
     seedText = generateSeed()
-    seed = [ord(char) for char in seedText]
+    seed = 0
+
+    for word in range(seedWords):
+        seedText += ' ' + generateSeed()
+
+    for char in seedText:
+        seed += slash(ord(char))
+
+    seed = seed / len(seedText)
 
     currentOperationsLength = (random() % maxOperationsLength) + 1
     pixel = [operation(currentOperationsLength), operation(currentOperationsLength), operation(currentOperationsLength), colors[random() % colorsLength]]
