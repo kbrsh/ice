@@ -144,24 +144,6 @@ class ConstantOperator(object):
     def compute(self, x, y):
         return self.constant
 
-class LinearOperator(object):
-    def __init__(self, a):
-        self.a = a
-        self.slope = randomConstant()
-        self.yint = randomConstant()
-
-    def compute(self, x, y):
-        return ((self.a.compute(x, y) * self.slope) + self.yint) % 1.0
-
-class ExponentOperator(object):
-    def __init__(self, a):
-        self.a = a
-        self.exponent = abs(randomConstant())
-
-    def compute(self, x, y):
-        ac = self.a.compute(x, y)
-        return math.copysign(abs(ac) ** self.exponent, ac)
-
 class AdditionOperator(object):
     def __init__(self, a, b):
         self.a = a
@@ -196,6 +178,19 @@ class ReciprocalOperator(object):
             return ac
         else:
             return (1.0 / self.a.compute(x, y)) % 1.0
+
+class ExponentOperator(object):
+    def __init__(self, a):
+        self.a = a
+        self.exponent = abs(randomConstant())
+
+    def compute(self, x, y):
+        ac = self.a.compute(x, y)
+
+        if ac < 0.0:
+            return -(abs(ac) ** self.exponent)
+        else:
+            return ac ** self.exponent
 
 class NegationOperator(object):
     def __init__(self, a):
@@ -257,7 +252,7 @@ class ArrowOperator(object):
         return -abs(2.0 * self.a.compute(x, y)) + 1.0
 
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
-operations = [LinearOperator, ExponentOperator, AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, NegationOperator, LeftShiftOperator, RightShiftOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
+operations = [AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, ExponentOperator, NegationOperator, LeftShiftOperator, RightShiftOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
