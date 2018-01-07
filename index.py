@@ -2,6 +2,7 @@ import os
 import time
 import png
 import TwitterAPI
+import src.loader
 import src.seed
 import src.pixel
 
@@ -38,6 +39,7 @@ def generateImage(pixel):
             currentRow.append(c3)
 
         data.append(currentRow)
+        src.loader.load(row / (rows - 1))
 
     f = open("art.png", "wb")
     w = png.Writer(cols, rows)
