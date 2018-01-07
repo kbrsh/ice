@@ -9,7 +9,7 @@ print("\x1b[36mIce\x1b[0m Transforming Image 💡")
 seedText = src.seed.generateSeed()
 
 # Read
-f = open("image.png", "rb")
+f = open("art.png", "rb")
 r = png.Reader(f)
 info = r.read()
 width = info[0]
@@ -22,6 +22,8 @@ f.close()
 # Transform
 transformSlope = 2.0 / 255.0
 transformYInt = -1.0
+secondSlope = 2.0 / float(width + height - 2)
+secondYInt = -1.0
 pixel = src.pixel.generatePixel()
 pixelOperationC1 = pixel[0]
 pixelOperationC2 = pixel[1]
@@ -31,14 +33,16 @@ pixelColor = pixel[3]
 for rowIndex, row in enumerate(data):
     row = list(map(float, row))
     for colIndex in range(0, len(row), skip):
+        second = ((rowIndex + (colIndex / skip)) * secondSlope) + secondYInt
+
         r = (row[colIndex] * transformSlope) + transformYInt
-        r = pixelOperationC1.compute(r, -r)
+        r = pixelOperationC1.compute(r, second)
 
         g = (row[colIndex + 1] * transformSlope) + transformYInt
-        g = pixelOperationC2.compute(g, -g)
+        g = pixelOperationC2.compute(g, second)
 
         b = (row[colIndex + 2] * transformSlope) + transformYInt
-        b = pixelOperationC3.compute(b, -b)
+        b = pixelOperationC3.compute(b, second)
 
         r, g, b = pixelColor(r, g, b)
         row[colIndex] = r
