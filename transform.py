@@ -1,4 +1,5 @@
 import png
+import src.loader
 import src.seed
 import src.pixel
 
@@ -50,6 +51,7 @@ for rowIndex, row in enumerate(data):
         row[colIndex + 2] = b
 
     data[rowIndex] = row
+    src.loader.load(rowIndex / (height - 1))
 
 # Write
 f = open("transform.png", "wb")
