@@ -1,3 +1,4 @@
+# Progress Loader
 def load(percent):
     step = round(percent * 20.0)
     end = " ⚡️\n" if percent == 1.0 else ""
