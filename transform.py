@@ -10,7 +10,7 @@ print("\x1b[36mIce\x1b[0m Transforming Image 💡")
 seedText = src.seed.generateSeed()
 
 # Read
-f = open("somecoolwaterfalls.png", "rb")
+f = open("art.png", "rb")
 r = png.Reader(f)
 info = r.read()
 width = info[0]
