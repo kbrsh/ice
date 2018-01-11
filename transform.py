@@ -16,8 +16,8 @@ info = r.read()
 width = info[0]
 height = info[1]
 data = list(info[2])
-alpha = info[3]["alpha"]
-skip = 4 if alpha else 3
+metaAlpha = info[3]["alpha"]
+skip = 4 if metaAlpha else 3
 f.close()
 
 # Transform
@@ -55,7 +55,7 @@ for rowIndex, row in enumerate(data):
 
 # Write
 f = open("transform.png", "wb")
-w = png.Writer(width, height, alpha=alpha)
+w = png.Writer(width, height, alpha=metaAlpha)
 w.write(f, data)
 f.close()
 
