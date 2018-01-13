@@ -5,7 +5,7 @@ from ..operations import operation
 # Configuration
 maxOperationsLength = 7
 
-# Pixel
+# Pixel Generator
 def generatePixel():
     currentOperationsLength = (random() % maxOperationsLength) + 1
     return [operation(currentOperationsLength), operation(currentOperationsLength), operation(currentOperationsLength), colors[random() % colorsLength]]
