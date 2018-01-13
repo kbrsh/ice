@@ -130,6 +130,7 @@ operations = [AdditionOperator, SubtractionOperator, MultiplicationOperator, Rec
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
 
+# Generate Operation
 def operation(current):
     if current == 0:
         return operationsEnd[random() % operationsEndLength]()
