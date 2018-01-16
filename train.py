@@ -13,6 +13,7 @@ def softmax(x, temperature):
     exp_x = np.exp(x / temperature)
     return exp_x / np.sum(exp_x)
 
+# RNN
 class TextRNN(object):
     def __init__(self, hiddenLayers=300, sequenceLength=50):
         # Hidden Layers
