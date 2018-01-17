@@ -362,4 +362,4 @@ bot.train(data, 1, '')
 bot.load(open("data/MODEL"));
 bot.run(size=50, temperatures=[0.5, 1.0], iterations=5000)
 bot.save(True)
-# print bot.sample(300000, temperature=0.5, start='\n')
+print bot.sample(1000, temperature=0.5, start='\n')
