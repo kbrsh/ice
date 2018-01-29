@@ -2,13 +2,13 @@ import numpy as np
 np.seterr(over="ignore")
 
 # Slash
-prime = np.uint64(0xA171020315130201)
-seven = np.uint64(7)
-fiftyseven = np.uint64(57)
+prime = np.uint64(0xA01731A5AC74E8DB)
+eight = np.uint64(8)
+fiftysix = np.uint64(56)
 
 def slash(key):
     result = np.uint64(key) * prime
-    result = (result >> seven) | (result << fiftyseven)
+    result = (result >> eight) | (result << fiftysix)
     return result.item()
 
 # Random
