@@ -33,7 +33,7 @@ def random():
 def randomConstant():
     return (maximumSlopeConstant * float(random())) - 7.0
 
-def noise(x):
+def randomNoise(x):
     # Frequency
     x = x * frequency
 

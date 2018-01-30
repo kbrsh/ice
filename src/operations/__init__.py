@@ -1,5 +1,5 @@
 import math
-from ..random import random, randomConstant, noise, maximumSlopePixel
+from ..random import random, randomConstant, randomNoise, maximumSlopePixel
 
 # Operations
 class VariableXOperator(object):
@@ -129,7 +129,7 @@ class NoiseOperator(object):
         self.a = a
 
     def compute(self, x, y):
-        return 2.0 * noise((self.a.compute(x, y) + 1.0) / 2.0) - 1.0
+        return 2.0 * randomNoise((self.a.compute(x, y) + 1.0) / 2.0) - 1.0
 
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
 operations = [AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, ExponentOperator, NegationOperator, LeftShiftOperator, RightShiftOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator, NoiseOperator]
