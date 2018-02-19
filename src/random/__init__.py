@@ -14,14 +14,14 @@ def slash(key):
 # Random
 seed = (slash(ord('I')) + slash(ord('c')) + slash(ord('e'))) / 3
 frequency = 10.0
-period = 100
+period = 1000
 noiseValues = []
 maximumSlopePixel = 2.0 / float(0xFFFFFFFFFFFFFFFF)
 maximumSlopeConstant = 14.0 / float(0xFFFFFFFFFFFFFFFF)
 
 def seedRandom(newSeed):
     global seed
-    for i in range(period):
+    for i in range(period * period):
         noiseValues.append(float(random()) / float(0xFFFFFFFFFFFFFFFF))
     seed = newSeed
 
@@ -42,11 +42,43 @@ def randomNoise(x):
 
     # Find output values
     xp = xi % period
-    ya = noiseValues[xp]
-    yb = noiseValues[xp if xp == period - 1 else xp + 1]
+    oa = noiseValues[xp]
+    ob = noiseValues[xp if xp == period - 1 else xp + 1]
 
     # Map x -> [0, 1]
     x = x - xi
 
-    # Smoothly map x : [0, 1] -> [ya, yb]
-    return (x * x * x * (x * (x * (6.0 * yb - 6.0 * ya) + (15.0 * ya - 15.0 * yb)) + (10.0 * yb - 10.0 * ya)) + ya)
+    # Smoothly map x : [0, 1] -> [oa, ob]
+    return (x * x * x * (x * (x * (6.0 * ob - 6.0 * oa) + (15.0 * oa - 15.0 * ob)) + (10.0 * ob - 10.0 * oa)) + oa)
+
+def randomNoise2(x, y):
+    # Frequency
+    x = x * frequency
+    y = y * frequency
+
+    # Floor to integer
+    xi = int(x)
+    yi = int(y)
+
+    # Find period values
+    xp = xi % period
+    yp = yi % period
+
+    # Find output values
+    oa = noiseValues[xp * period + yp]
+    ob = noiseValues[xp * period + (yp if yp == period - 1 else yp + 1)]
+    oc = noiseValues[(xp if xp == period - 1 else xp + 1) * period + (yp if yp == period - 1 else yp + 1)]
+    od = noiseValues[(xp if xp == period - 1 else xp + 1) * period + yp]
+
+    # Map x, y -> [0, 1]
+    x = x - xi
+    y = y - yi
+
+    # Smoothly map x : [0, 1] -> [oa, od]
+    oad = x * x * x * (x * (x * (6 * od - 6 * oa) + (15 * oa - 15 * od)) + (10 * od - 10 * oa)) + oa
+
+    # Smoothly map x : [0, 1] -> [ob, oc]
+    obc = x * x * x * (x * (x * (6 * oc - 6 * ob) + (15 * ob - 15 * oc)) + (10 * oc - 10 * ob)) + ob
+
+    # Smoothly map y : [0, 1] -> [oad, obc]
+    return y * y * y * (y * (y * (6 * obc - 6 * oad) + (15 * oad - 15 * obc)) + (10 * obc - 10 * oad)) + oad
