@@ -44,8 +44,8 @@ def put(x, y):
     else:
         lum = lums[(x, y)] = lum + 0.07
 
-    if lum > 1.0:
-        lum = 1.0
+    if lum > 0.7:
+        lum = 0.7
 
     colorHue = (color2 - color1) * src.random.randomNoise2(x / 500, y / 500) + color1
     (r, g, b) = colorsys.hls_to_rgb(colorHue, lum, 1.0)
