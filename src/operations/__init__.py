@@ -1,5 +1,5 @@
 import math
-from ..random import random, randomConstant, randomNoise, maximumSlopePixel
+from ..random import random, randomConstant, randomNoise, randomNoise2D, maximumSlopePixel
 
 # Operations
 class VariableXOperator(object):
@@ -131,8 +131,16 @@ class NoiseOperator(object):
     def compute(self, x, y):
         return 2.0 * randomNoise((self.a.compute(x, y) + 1.0) / 2.0) - 1.0
 
+class Noise2DOperator(object):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def compute(self, x, y):
+        return 2.0 * randomNoise2D((self.a.compute(x, y) + 1.0) / 2.0, (self.b.compute(x, y) + 1.0) / 2.0) - 1.0
+
 operationsEnd = [VariableXOperator, VariableYOperator, ConstantOperator]
-operations = [AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, ExponentOperator, NegationOperator, LeftShiftOperator, RightShiftOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator, NoiseOperator]
+operations = [AdditionOperator, SubtractionOperator, MultiplicationOperator, ReciprocalOperator, ExponentOperator, NegationOperator, LeftShiftOperator, RightShiftOperator, SineOperator, CosineOperator, HyperbolicTangentOperator, SquashOperator, ArrowOperator, NoiseOperator, Noise2DOperator]
 
 operationsEndLength = len(operationsEnd)
 operationsLength = len(operations)
