@@ -6,18 +6,18 @@ import src.seed
 import src.random
 
 # Configuration
-width = 1000
-height = 1000
-xs = 700
-ys = 700
+width = 1000 # Width
+height = 1000 # Height
+xs = 700 # Filled width
+ys = 700 # Filled height
 
-xo = int((width - xs) / 2)
-yo = int((height - ys) / 2)
+xo = int((width - xs) / 2) # X filled offset
+yo = int((height - ys) / 2) # Y filled offset
 
-p = []
-v = []
-o = 10
-tt = 1000
+p = [] # Points
+v = [] # Vectors
+o = 10 # Point offset
+tt = 1000 # Total time
 
 # Initialize
 print("\x1b[36mIce\x1b[0m Crafting Trail 💡")
