@@ -64,6 +64,7 @@ def putClear(x, y):
     row[x + 1] = 0.0
     row[x + 2] = 0.0
 
+# Sizes, offsets, points, vectors, and time configuration
 xs = 700
 ys = 700
 
@@ -75,6 +76,7 @@ v = []
 o = 10
 tt = 1000
 
+# Vectors
 for x in range(0, width):
     vcol = []
     v.append(vcol)
@@ -83,12 +85,14 @@ for x in range(0, width):
         angle = 2 * math.pi * src.random.randomNoise2(x / 500, y / 500)
         vcol.append([math.cos(angle), math.sin(angle)])
 
+# Points
 for x in range(xo, xo + xs, o):
     pcol = []
     p.append(pcol)
     for y in range(yo, yo + ys, o):
         pcol.append([x, y])
 
+# Movement
 for t in range(tt):
     for pcol in p:
         for pc in pcol:
@@ -105,11 +109,13 @@ for t in range(tt):
             put(x, y)
     src.loader.load(t / (tt - 1))
 
+# Clear
 for x in range(0, width):
     for y in range(0, height):
         if x < xo or x >= (xo + xs) or y < yo or y >= (yo + ys):
             putClear(x, y)
 
+# Write
 f = open("art.png", "wb")
 w = png.Writer(width, height)
 w.write(f, data)
