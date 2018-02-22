@@ -51,7 +51,7 @@ def randomNoise(x):
     # Smoothly map x : [0, 1] -> [oa, ob]
     return (x * x * x * (x * (x * (6.0 * ob - 6.0 * oa) + (15.0 * oa - 15.0 * ob)) + (10.0 * ob - 10.0 * oa)) + oa)
 
-def randomNoise2(x, y):
+def randomNoise2D(x, y):
     # Frequency
     x = x * frequency
     y = y * frequency

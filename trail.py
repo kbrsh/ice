@@ -57,7 +57,7 @@ def put(x, y):
     if lum > 0.7:
         lum = 0.7
 
-    colorHue = (color2 - color1) * src.random.randomNoise2(x / 500, y / 500) + color1
+    colorHue = (color2 - color1) * src.random.randomNoise2D(x / 500, y / 500) + color1
     (r, g, b) = colorsys.hls_to_rgb(colorHue, lum, 1.0)
 
     row = data[y]
@@ -80,7 +80,7 @@ for x in range(0, width):
     v.append(vcol)
 
     for y in range(0, height):
-        angle = 2 * math.pi * src.random.randomNoise2(x / 500, y / 500)
+        angle = 2 * math.pi * src.random.randomNoise2D(x / 500, y / 500)
         vcol.append([math.cos(angle), math.sin(angle)])
 
 # Points
