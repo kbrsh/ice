@@ -8,6 +8,16 @@ import src.random
 # Configuration
 width = 1000
 height = 1000
+xs = 700
+ys = 700
+
+xo = int((width - xs) / 2)
+yo = int((height - ys) / 2)
+
+p = []
+v = []
+o = 10
+tt = 1000
 
 # Initialize
 print("\x1b[36mIce\x1b[0m Crafting Trail 💡")
@@ -63,18 +73,6 @@ def putClear(x, y):
     row[x] = 0.0
     row[x + 1] = 0.0
     row[x + 2] = 0.0
-
-# Sizes, offsets, points, vectors, and time configuration
-xs = 700
-ys = 700
-
-xo = int((width - xs) / 2)
-yo = int((height - ys) / 2)
-
-p = []
-v = []
-o = 10
-tt = 1000
 
 # Vectors
 for x in range(0, width):
