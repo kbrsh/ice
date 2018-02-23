@@ -11,8 +11,8 @@ height = 1000 # Height
 xs = 700 # Filled width
 ys = 700 # Filled height
 
-xo = int((width - xs) / 2) # X filled offset
-yo = int((height - ys) / 2) # Y filled offset
+xo = int((width - xs) / 2) # X filled offset margins
+yo = int((height - ys) / 2) # Y filled offset margins
 
 p = [] # Points
 v = [] # Vectors
