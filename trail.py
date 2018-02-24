@@ -65,6 +65,7 @@ def put(x, y):
     row[x + 1] = g * 255.0
     row[x + 2] = b * 255.0
 
+# Clear
 def putClear(x, y):
     x = x * 3
     y = height - y - 1
