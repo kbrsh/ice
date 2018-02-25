@@ -29,8 +29,8 @@ def generate():
     for t in range(tt):
         for pcol in p:
             for pc in pcol:
-                x = pc[0]
-                y = pc[1]
+                x = pc[0] % width
+                y = pc[1] % height
 
                 vc = v[x][y]
                 vx = vc[0]
