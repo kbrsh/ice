@@ -9,7 +9,7 @@ def generate():
     data = generateData() # Image data
 
     # Pixel
-    pixel = generatePixel()
+    pixel = generatePixel(3, True)
     pixelOperationC1 = pixel[0]
     pixelOperationC2 = pixel[1]
     pixelOperationC3 = pixel[2]
