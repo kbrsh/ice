@@ -13,7 +13,12 @@ def hsl(c1, c2, c3):
 # Generate
 def generateColors():
     color1 = float(random()) / float(0xFFFFFFFFFFFFFFFF)
-    return color1, (((3.0 * color1) / (70.0 * float(0xFFFFFFFFFFFFFFFF))) + (1.0 / 10.0)) % 1.0
+    color2 = color1 + (1.0 / 7.0)
+
+    if color2 > 1.0:
+        return generateColors()
+
+    return color1, color2
 
 colors = [rgb, hsl]
 colorsLength = len(colors)
