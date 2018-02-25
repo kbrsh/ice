@@ -6,6 +6,14 @@ from ..operations import operation
 maxOperationsLength = 7
 
 # Pixel Generator
-def generatePixel():
+def generatePixel(amount, color):
+    pixel = []
     currentOperationsLength = (random() % maxOperationsLength) + 1
-    return [operation(currentOperationsLength), operation(currentOperationsLength), operation(currentOperationsLength), colors[random() % colorsLength]]
+
+    for i in range(amount):
+        pixel.append(operation(currentOperationsLength))
+
+    if color:
+        pixel.append(colors[random() % colorsLength])
+
+    return pixel
