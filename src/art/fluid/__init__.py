@@ -1,45 +1,34 @@
-import png
 from ...loader import load
 from ...seed import generateSeed
 from ...pixel import generatePixel
+from ...graphics import width, height, generateData, put, clearMargins, writeImage
 
-# Configuration
-rows = 1000
-cols = 1000
+# Generate
+def generate():
+    seedText = generateSeed() # Seed
+    data = generateData() # Image data
 
-# Generate Image
-def generateImage(pixel):
-    data = []
-    rowsSlope = 2.0 / (float(rows) - 1.0)
-    colsSlope = 2.0 / (float(cols) - 1.0)
+    # Pixel
+    pixel = generatePixel()
     pixelOperationC1 = pixel[0]
     pixelOperationC2 = pixel[1]
     pixelOperationC3 = pixel[2]
     pixelColor = pixel[3]
 
-    for row in range(rows):
-        currentRow = []
-        x = (rowsSlope * float(row)) - 1.0
+    # Compute pixels
+    for x in range(width):
+        xi = (2.0 * x) / (width - 1.0) - 1.0
 
-        for col in range(cols):
-            y = (colsSlope * float(col)) - 1.0
-            (c1, c2, c3) = pixelColor(pixelOperationC1.compute(x, y), pixelOperationC2.compute(x, y), pixelOperationC3.compute(x, y))
+        for y in range(height):
+            yi = (2.0 * y) / (height - 1.0) - 1.0
+            put(x, y, pixelColor(pixelOperationC1.compute(xi, yi), pixelOperationC2.compute(xi, yi), pixelOperationC3.compute(xi, yi)), data)
 
-            currentRow.append(c1)
-            currentRow.append(c2)
-            currentRow.append(c3)
+        load(x / (width - 1))
 
-        data.append(currentRow)
-        load(row / (rows - 1))
+    # Clear margins
+    clearMargins(data)
 
-    f = open("art.png", "wb")
-    w = png.Writer(cols, rows)
-    w.write(f, data)
-    f.close()
-
-# Generate
-def generate():
-    seedText = generateSeed()
-    generateImage(generatePixel())
+    # Write
+    writeImage(data)
 
     return seedText
