@@ -4,7 +4,6 @@ import png
 from ...loader import load
 from ...seed import generateSeed
 from ...random import random, randomNoise2D
-from ...pixel import generatePixel
 
 # Configuration
 width = 1000 # Width
