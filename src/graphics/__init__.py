@@ -59,9 +59,9 @@ def putColor(x, y, data, color1, color2, lums):
     lum = lums.get((x, y))
 
     if lum is None:
-        lum = lums[(x, y)] = 0.1
+        lum = lums[(x, y)] = 0.17
     else:
-        lum = lums[(x, y)] = lum + 0.1
+        lum = lums[(x, y)] = lum + 0.17
 
     if lum > 0.7:
         lum = 0.7
