@@ -22,7 +22,7 @@ def generate():
         v.append(vcol)
 
         for y in range(0, height):
-            angle = 2 * math.pi * randomNoise2D(x / 500, y / 500)
+            angle = 2. * math.pi * randomNoise2D(x / 500.0, y / 500.0)
             vcol.append([math.cos(angle), math.sin(angle)])
 
     # Movement

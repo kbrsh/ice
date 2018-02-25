@@ -22,7 +22,7 @@ def generate():
                 x = pc[0]
                 y = pc[1]
 
-                va = 2 * math.pi * randomNoise2D(x / 500, y / 500)
+                va = 2.0 * math.pi * randomNoise2D(x / 500.0, y / 500.0)
                 vx = math.cos(va)
                 vy = math.sin(va)
 
