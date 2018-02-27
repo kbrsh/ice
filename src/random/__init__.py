@@ -4,11 +4,11 @@ np.seterr(over="ignore")
 # Slash
 prime = np.uint64(0xA01731A5AC74E8DB)
 eight = np.uint64(8)
-fiftysix = np.uint64(56)
+fiftySix = np.uint64(56)
 
 def slash(key):
     result = np.uint64(key) * prime
-    result = (result >> eight) | (result << fiftysix)
+    result = (result >> eight) | (result << fiftySix)
     return result.item()
 
 # Random
