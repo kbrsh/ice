@@ -41,7 +41,7 @@ def generatePoints():
 
     return p
 
-# Put
+# Put pixel
 def put(x, y, c, data):
     x = int(x % width) * 3
     y = height - int(y % height) - 1
@@ -51,7 +51,7 @@ def put(x, y, c, data):
     row[x + 1] = c[1]
     row[x + 2] = c[2]
 
-# Put color
+# Put colored pixel
 def putColor(x, y, data, color1, color2, lums):
     x = int(x % width) * 3
     y = height - int(y % height) - 1
