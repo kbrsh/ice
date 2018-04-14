@@ -10,7 +10,7 @@ def generate():
     # Initialize
     seedText = generateSeed() # Seed
     data = generateData() # Image data
-    p = generatePoints() # Points
+    p = generatePoints(10) # Points
     v = [] # Vectors
     color1, color2 = generateColors() # Colors
     lums = {} # Color lightnesses
