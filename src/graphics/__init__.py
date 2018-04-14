@@ -11,8 +11,6 @@ ys = 700 # Filled height
 xo = int((width - xs) / 2) # X filled offset margins
 yo = int((height - ys) / 2) # Y filled offset margins
 
-o = 10 # Point offset
-
 # Generate data
 def generateData():
     data = []
@@ -30,7 +28,7 @@ def generateData():
     return data
 
 # Generate points
-def generatePoints():
+def generatePoints(o):
     p = []
 
     for x in range(xo, xo + xs, o):
