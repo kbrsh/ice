@@ -13,7 +13,7 @@ def slash(key):
 
 # Random
 seed = (slash(ord('I')) + slash(ord('c')) + slash(ord('e'))) / 3
-frequency = 10.0
+frequency = 2.0
 period = 1000
 noiseValues = []
 maximumSlopePixel = 2.0 / float(0xFFFFFFFFFFFFFFFF)
@@ -83,3 +83,16 @@ def randomNoise2D(x, y):
 
     # Smoothly map y : [0, 1] -> [oad, obc]
     return y * y * y * (y * (y * (6 * obc - 6 * oad) + (15 * oad - 15 * obc)) + (10 * obc - 10 * oad)) + oad
+
+def randomNoise2DOctaves(x, y):
+    global frequency
+    o1 = randomNoise2D(x, y)
+
+    frequency = frequency * frequency
+    o2 = randomNoise2D(x, y)
+
+    frequency = frequency * frequency
+    o3 = randomNoise2D(x, y)
+
+    frequency = 2.0
+    return (o1 + o2 + o3) / 3.0
