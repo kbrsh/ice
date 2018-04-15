@@ -21,7 +21,9 @@ maximumSlopeConstant = 14.0 / float(0xFFFFFFFFFFFFFFFF)
 
 def seedRandom(newSeed):
     global seed
+    global noiseValues
     seed = newSeed
+    noiseValues = []
     for i in range(period * period):
         noiseValues.append(float(random()) / float(0xFFFFFFFFFFFFFFFF))
 
