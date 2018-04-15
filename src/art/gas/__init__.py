@@ -3,7 +3,7 @@ from ...loader import load
 from ...color import generateColors
 from ...seed import generateSeed
 from ...random import randomNoise2D
-from ...graphics import generateData, generatePoints, putColor, clearMargins, writeImage
+from ...graphics import generateData, generatePoints, putColorMix, clearMargins, writeImage
 
 # Generate
 def generate():
@@ -29,7 +29,7 @@ def generate():
                 pc[0] = x + vx
                 pc[1] = y + vy
 
-                putColor(x, y, data, color1, color2, lums)
+                putColorMix(x, y, data, color1, color2, lums)
         load(t / (tt - 1))
 
     # Clear margins
