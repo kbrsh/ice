@@ -3,6 +3,7 @@ import time
 import TwitterAPI
 import src.art.fluid
 import src.art.gas
+import src.art.map
 
 # Configuration
 twitterAPI = TwitterAPI.TwitterAPI(
@@ -13,7 +14,7 @@ twitterAPI = TwitterAPI.TwitterAPI(
 )
 
 # Generate
-types = [src.art.fluid, src.art.gas]
+types = [src.art.fluid, src.art.gas, src.art.map]
 totalTypes = len(types)
 current = 0
 while True:
