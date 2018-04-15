@@ -50,7 +50,19 @@ def put(x, y, c, data):
     row[x + 2] = c[2]
 
 # Put colored pixel
-def putColor(x, y, data, color1, color2, lums):
+def putColor(x, y, data, hue, sat, lum):
+    x = int(x % width) * 3
+    y = height - int(y % height) - 1
+
+    (r, g, b) = colorsys.hls_to_rgb(hue, lum, sat)
+
+    row = data[y]
+    row[x] = r * 255.0
+    row[x + 1] = g * 255.0
+    row[x + 2] = b * 255.0
+
+# Put mixed colored pixel
+def putColorMix(x, y, data, color1, color2, lums):
     x = int(x % width) * 3
     y = height - int(y % height) - 1
 
