@@ -75,7 +75,6 @@ def generate():
         #     if currentHeight is None or currentHeight <= level:
         #         break
 
-
     # Mountains
     for pcolIndex in range(0, len(p), 20):
         pcol = p[pcolIndex]
