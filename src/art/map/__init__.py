@@ -48,6 +48,7 @@ def generate():
         currentHeight = heights[(x, y)]
         putColor(x, y, data, 0.0, 0.0, 0.0)
 
+        # Noise rivers
         for part in range(0, riverLength):
             va = 2.0 * math.pi * currentHeight
             x += math.cos(va)
@@ -63,6 +64,7 @@ def generate():
                 coasts.append((xi, yi))
                 putColor(x, y, data, 0.0, 0.0, 0.0)
 
+        # Guided rivers
         # for part in range(0, riverHalfLength):
         #     putColor(x, y, data, 0.0, 0.0, 0.0)
         #
