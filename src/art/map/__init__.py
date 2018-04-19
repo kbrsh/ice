@@ -14,7 +14,7 @@ def generate():
     color1, color2 = generateColors()
     heights = {} # Heights
     coasts = [] # Coasts
-    level = 0.5 # Level
+    level = 0.5 # Sea Level
 
     # Height Map
     for pcol in p:
