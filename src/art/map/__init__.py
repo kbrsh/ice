@@ -16,7 +16,7 @@ def generate():
     coasts = [] # Coasts
     level = 0.5 # Sea Level
 
-    # Height Map
+    # Heights
     for pcol in p:
         for pc in pcol:
             x = pc[0]
