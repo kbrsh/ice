@@ -99,7 +99,7 @@ def generate():
     # Clear margins
     clearMargins(data)
 
-    # Write
+    # Write image
     writeImage(data)
 
     return seedText
